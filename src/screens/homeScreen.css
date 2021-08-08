@@ -1,0 +1,30 @@
+.homeScreen {
+  width: 80%;
+  max-width: 950px;
+  margin: auto;
+}
+
+.poemContainer {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1100px) {
+  .poemContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .homeScreen {
+    width: 90%;
+  }
+}
+
+@media (max-width: 720px) {
+  .poemContainer {
+    grid-template-columns: 1fr;
+  }
+}
