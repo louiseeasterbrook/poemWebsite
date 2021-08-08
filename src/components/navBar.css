@@ -1,7 +1,3 @@
-* {
-  color: white;
-}
-
 .navBar {
   background-color: rgb(29, 29, 29);
   height: 5rem;
@@ -13,7 +9,6 @@
   width: 65%;
   max-width: 900px;
   margin: auto;
-  /* background-color: aqua; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +18,7 @@
   text-decoration: none;
   font-size: 2.5rem;
   letter-spacing: 3px;
+  color: white;
 }
 
 .pageTitle:hover {
@@ -37,6 +33,7 @@
   background-color: rgb(50, 195, 205);
   height: 2.5rem;
   line-height: 2.5rem;
+  color: white;
 }
 
 .navBtn-large {
