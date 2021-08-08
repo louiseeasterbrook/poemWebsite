@@ -5,9 +5,17 @@ const NavBar = () => {
   return (
     <div className="navBar">
       <div className="navBarContainer">
-        <h1>Poems</h1>
+        <Link className="pageTitle" to="/">
+          Poems
+        </Link>
 
-        <Link to="/add">Add</Link>
+        <Link className="navBtn-large navBtn" to="/add">
+          Add
+        </Link>
+
+        <Link className="navBtn-small navBtn" to="/add">
+          +
+        </Link>
       </div>
     </div>
   );
