@@ -1,0 +1,53 @@
+.poemItemContainer {
+  color: black;
+  background-color: rgb(235, 232, 232);
+  width: 18rem;
+  max-width: 90%;
+  margin: auto;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.poemItemContainer:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.poemContent {
+  margin: 1.5rem;
+  /* background-color: aqua; */
+}
+.poemContent h1 {
+  margin-bottom: 0.7rem;
+}
+
+.authorSection {
+  /* margin-top: 1.5rem; */
+  display: flex;
+  /* background-color: darkorange; */
+  height: 2.5rem;
+  align-items: center;
+  border-top: 1px solid grey;
+  padding: 0.5rem;
+}
+
+.authorName {
+  margin-left: 0.6rem;
+}
+
+.authorImg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@media (max-width: 1100px) {
+  .poemItemContainer {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .poemItemContainer {
+    width: 24rem;
+  }
+}
