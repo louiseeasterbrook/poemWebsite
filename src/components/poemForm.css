@@ -1,0 +1,57 @@
+.poemFormContainer {
+  /* margin-top: 2rem; */
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  width: 70%;
+  /* background-color: white; */
+  /* overflow: hidden; */
+}
+
+label {
+  margin: auto;
+  float: left;
+  width: 200px;
+  padding-right: 20px;
+}
+
+input {
+  margin: auto;
+  line-height: 25px;
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  margin-top: 0.7rem;
+  width: 100%;
+  line-height: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+@media (max-width: 900px) {
+  form {
+    width: 80%;
+    /* background-color: rgb(104, 100, 109); */
+    /* background-color: blue; */
+  }
+}
+
+@media (max-width: 720px) {
+  form {
+    width: 95%;
+    /* background-color: blueviolet; */
+  }
+}
