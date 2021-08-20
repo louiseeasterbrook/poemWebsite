@@ -1,0 +1,36 @@
+.poemScreen {
+  width: 65%;
+  max-width: 850px;
+  margin: auto;
+  margin-top: 2rem;
+}
+.authorDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poemTitle {
+  text-align: center;
+  margin: 0.6rem;
+}
+
+.poemText {
+  margin: 2rem;
+  line-height: 25px;
+}
+
+/* @media (max-width: 1100px) {
+} */
+
+@media (max-width: 900px) {
+  .poemScreen {
+    width: 80%;
+  }
+}
+
+@media (max-width: 720px) {
+  .poemScreen {
+    width: 95%;
+  }
+}
