@@ -4,21 +4,18 @@ import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const PoemItem = (props) => {
+  console.log(props.text);
   return (
     <div onClick={props.toPoem} className="poemItemContainer">
-      <Link to="/poem">
+      <Link to={`/poem/${props.poemId}`}>
         <div className="poemContent">
-          <h1>Poem Title</h1>
-          <p>
-            this is the 1poem
-            <br /> line second <br />
-            line third line....
-          </p>
+          <h1>{props.poemTitle}</h1>
+          <p>{props.poemText}</p>
         </div>
 
         <div className="authorSection">
           <img src={userPic} alt="author" className="authorImg" />
-          <p className="authorName">Louise Easterbrok</p>
+          <p className="authorName">{props.author}</p>
         </div>
       </Link>
     </div>
