@@ -1,0 +1,28 @@
+{
+  "poems": [
+    {
+      "id": 0,
+      "title": "Campervan",
+      "author": "Bob Bobalooba",
+      "authorid": 0,
+      "text": "hello this is the poem",
+      "votes": 3
+    },
+    {
+      "id": 1,
+      "title": "Woolies",
+      "author": "Bob Bobalooba",
+      "authorid": 0,
+      "text": "this is about woolies\nthis is second line\nthird line si this one",
+      "votes": 2
+    },
+    {
+      "id": 2,
+      "title": "Coles",
+      "author": "Bob Bobalooba",
+      "authorid": 0,
+      "text": "this is about Coles",
+      "votes": 2
+    }
+  ]
+}
