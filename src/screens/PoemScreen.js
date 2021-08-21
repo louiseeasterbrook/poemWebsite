@@ -1,30 +1,33 @@
 import "./poemScreen.css";
 import userPic from "../user.png";
+import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const PoemScreen = () => {
+  let { id } = useParams();
+  const [poem, setPoem] = useState([]);
+
+  //GET DATA FROM SERVER
+  useEffect(() => {
+    console.log("effect");
+    axios.get(`http://localhost:3001/api/poems/${id}`).then((response) => {
+      console.log("promise fulfilled");
+      console.log(response.data);
+      setPoem(response.data);
+    });
+  }, []);
+
+  console.log(poem.author);
+
   return (
     <div className="poemScreen">
-      <h2 className="poemTitle">Title</h2>
+      <h2 className="poemTitle">{poem.title}</h2>
       <div className="authorDisplay">
         <img src={userPic} alt="author" className="authorImg" />
-        <p className="authorName">Louise Easterbrok</p>
+        <p className="authorName">{poem.author}</p>
       </div>
-      <p className="poemText">
-        Lorem Ipsum is simply dummy text of the <br />
-        printing and typesetting industry. Lorem Ipsum has been the industry's
-        <br />
-        standard dummy text ever since the 1500s,
-        <br /> when an unknown printer took a galley of type and scrambled it to
-        make a type specimen book. <br />
-        It has survived not only five centuries, but also the leap into
-        electronic
-        <br />
-        typesetting, remaining essentially unchanged. <br />
-        It was popularised in the 1960s with the release of Letraset <br />
-        sheets containing Lorem Ipsum <br />
-        passages, and more recently with desktop publishing <br />
-        software like Aldus PageMaker including versions of Lorem Ipsum
-      </p>
+      <p className="poemText">{poem.text}</p>
     </div>
   );
 };
