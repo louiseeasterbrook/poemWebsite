@@ -33,6 +33,36 @@ app.get("/api/poems/:id", (request, response) => {
   }
 });
 
+const generateId = () => {
+  console.log(Math.max(...poems.map((n) => n.id)));
+  const maxId = poems.length > 0 ? Math.max(...poems.map((n) => n.id)) : 0;
+  return maxId + 1;
+};
+
+//ADD A UNIT
+app.post("/api/poems", (request, response) => {
+  const body = request.body;
+
+  if (!body) {
+    return response.status(400).json({
+      error: "content missing",
+    });
+  }
+
+  const newPoem = {
+    id: generateId(),
+    title: body.title,
+    author: body.author,
+    text: body.text,
+    votes: 0,
+  };
+  console.log(poems);
+
+  poems = poems.concat(newPoem);
+  console.log(poems);
+  response.json(poems);
+});
+
 //MIDDLEWARE
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
