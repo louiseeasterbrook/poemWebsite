@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./poemForm.css";
 
-const PoemForm = () => {
-  const [poem, setPoem] = useState({ Title: "", Text: "", Author: "" });
+const PoemForm = (props) => {
+  const [poem, setPoem] = useState({ title: "", text: "", author: "" });
 
-  const addPoem = (event) => {
+  const createPoem = (event) => {
     event.preventDefault();
-    console.log("add poem clicked");
-    console.log(poem);
+    // console.log("add poem clicked");
+    // console.log(poem);
+    props.addPoem(poem);
+    // setPoem({ title: "", text: "", author: "" });
   };
 
   const poemUpdate = (event) => {
@@ -16,21 +18,20 @@ const PoemForm = () => {
 
   return (
     <div className="poemFormContainer">
-      <form onSubmit={addPoem}>
+      <form onSubmit={createPoem}>
         <label>Title</label>
         <input
           type="text"
           id="poemTitle"
-          name="Title"
+          name="title"
           value={poem.title}
           onChange={poemUpdate}
         />
         <label>Author</label>
         <input
           type="text multi-line"
-          rows="5"
           id="poemAuthor"
-          name="Author"
+          name="author"
           value={poem.author}
           onChange={poemUpdate}
         />
@@ -40,7 +41,7 @@ const PoemForm = () => {
           type="text"
           rows="10"
           id="poemText"
-          name="Text"
+          name="text"
           value={poem.text}
           onChange={poemUpdate}
         />
