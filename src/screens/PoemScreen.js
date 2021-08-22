@@ -3,6 +3,7 @@ import userPic from "../user.png";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Votes from "../components/Votes";
 
 const PoemScreen = () => {
   let { id } = useParams();
@@ -28,6 +29,7 @@ const PoemScreen = () => {
         <p className="authorName">{poem.author}</p>
       </div>
       <p className="poemText">{poem.text}</p>
+      <Votes votes={poem.votes} />
     </div>
   );
 };
