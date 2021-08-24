@@ -1,5 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 //Screens
 import HomeScreen from "./screens/HomeScreen";
@@ -10,15 +12,29 @@ import AddScreen from "./screens/AddScreen";
 import NavBar from "./components/NavBar";
 
 function App() {
+  const [poems, setPoems] = useState([]);
+
+  //GET DATA FROM SERVER
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/poems").then((response) => {
+      setPoems(response.data.poems);
+    });
+  }, []);
+
   return (
     <Router>
-      {/*navbar*/}
       <NavBar />
       <main>
         <Switch>
-          <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/poem/:id" component={PoemScreen} />
-          <Route exact path="/add" component={AddScreen} />
+          <Route exact path="/">
+            <HomeScreen poemData={poems} />
+          </Route>
+          <Route exact path="/poem/:id">
+            <PoemScreen />
+          </Route>
+          <Route exact path="/add">
+            <AddScreen setPoems={setPoems} poemData={poems} />
+          </Route>
         </Switch>
       </main>
     </Router>
