@@ -63,6 +63,15 @@ app.post("/api/poems", (request, response) => {
   response.json(poems);
 });
 
+//update vote
+app.put("/api/poems/:id", (request, response) => {
+  const id = Number(request.params.id);
+  const poemDataExclude = poems.filter((u) => u.id !== id);
+  poems = poemDataExclude.concat(request.body);
+  console.log(poems);
+  response.json(request.body);
+});
+
 //MIDDLEWARE
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });

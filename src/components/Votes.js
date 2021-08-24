@@ -5,7 +5,7 @@ const PoemItem = (props) => {
   return (
     <div className="votesContainer">
       <p>{props.votes}</p>
-      <button onClick={() => console.log}>^</button>
+      <button onClick={() => props.voteAdd()}>^</button>
     </div>
   );
 };
