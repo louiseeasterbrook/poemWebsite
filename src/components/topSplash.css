@@ -1,0 +1,100 @@
+.topSplashContainer {
+  background-color: #3891a6;
+  height: 40vh;
+  max-height: 350px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 10px rgba(128, 92, 92, 0.5);
+}
+
+.halfs {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftSplash {
+  /* background-color: aqua; */
+  width: 15%;
+  flex-direction: column;
+}
+
+h2 {
+  color: white;
+  margin: 1rem;
+  letter-spacing: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+.rightSplash {
+  width: 40%;
+  /* height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.circle {
+  background-color: #539dad;
+  width: 400px;
+  height: 400px;
+  border-radius: 60rem;
+  position: relative;
+}
+
+.paper {
+  position: absolute;
+  top: 50%;
+  height: 12rem;
+  width: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4); */
+}
+
+.paper1 {
+  background-color: rgb(206, 206, 206);
+  left: 60%;
+  transform: translate(-50%, -50%) rotate(30deg);
+}
+
+.paper2 {
+  background-color: rgb(230, 230, 230);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.paper3 {
+  background-color: rgb(255, 255, 255);
+  left: 40%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
+
+@media (max-width: 1100px) {
+  .leftSplash {
+    width: 30%;
+  }
+}
+
+@media (max-width: 900px) {
+  .rightSplash {
+    width: 60%;
+  }
+  .circle {
+    width: 300px;
+    height: 300px;
+  }
+
+  .paper {
+    height: 8rem;
+    width: 6rem;
+  }
+}
