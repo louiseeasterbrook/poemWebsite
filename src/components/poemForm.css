@@ -31,6 +31,13 @@ input:focus {
   outline: none;
 }
 
+textArea {
+  width: 100%;
+  resize: none;
+  padding-left: 4px;
+  padding-top: 3px;
+}
+
 button {
   margin-top: 0.7rem;
   width: 100%;
