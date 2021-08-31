@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Votes from "../components/Votes";
+import ReactMarkdown from "react-markdown";
+import MiniSplash from "../components/MiniSplash";
 
 const PoemScreen = () => {
   let { id } = useParams();
@@ -27,20 +29,24 @@ const PoemScreen = () => {
     axios
       .put(`http://localhost:3001/api/poems/${id}`, updatedPoem)
       .then((response) => {
+        console.log(response.data);
         setPoem(updatedPoem);
       });
   };
 
   return (
-    <div className="poemScreen">
-      <h2 className="poemTitle">{poem.title}</h2>
-      <div className="authorDisplay">
-        <img src={userPic} alt="author" className="authorImg" />
-        <p className="authorName">{poem.author}</p>
+    <>
+      <MiniSplash />
+      <div className="poemScreen">
+        <h2 className="poemTitle">{poem.title}</h2>
+        <div className="authorDisplay">
+          <img src={userPic} alt="author" className="authorImg" />
+          <p className="authorName">{poem.author}</p>
+        </div>
+        <ReactMarkdown className="poemText" children={poem.text} />
+        <Votes votes={poem.votes} voteAdd={updateVotes} />
       </div>
-      <p className="poemText">{poem.text}</p>
-      <Votes votes={poem.votes} voteAdd={updateVotes} />
-    </div>
+    </>
   );
 };
 
