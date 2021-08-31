@@ -6,10 +6,8 @@ const PoemForm = (props) => {
 
   const createPoem = (event) => {
     event.preventDefault();
-    // console.log("add poem clicked");
-    // console.log(poem);
     props.addPoem(poem);
-    // setPoem({ title: "", text: "", author: "" });
+    setPoem({ title: "", text: "", author: "" });
   };
 
   const poemUpdate = (event) => {
@@ -37,7 +35,7 @@ const PoemForm = (props) => {
         />
 
         <label>Poem Text</label>
-        <input
+        <textarea
           type="text"
           rows="10"
           id="poemText"
