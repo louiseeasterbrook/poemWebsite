@@ -30,11 +30,11 @@ app.get("/api/poems/:id", (request, response) => {
     response.json(poemData);
   } else {
     response.status(404).end();
+    res.send("<h1>Poem not found</h1>");
   }
 });
 
 const generateId = () => {
-  console.log(Math.max(...poems.map((n) => n.id)));
   const maxId = poems.length > 0 ? Math.max(...poems.map((n) => n.id)) : 0;
   return maxId + 1;
 };
@@ -43,7 +43,7 @@ const generateId = () => {
 app.post("/api/poems", (request, response) => {
   const body = request.body;
 
-  if (!body) {
+  if (!body.title || !body.author || !body.text) {
     return response.status(400).json({
       error: "content missing",
     });
@@ -54,12 +54,12 @@ app.post("/api/poems", (request, response) => {
     title: body.title,
     author: body.author,
     text: body.text,
-    votes: 0,
+    votes: Number(0),
   };
-  console.log(poems);
 
   poems = poems.concat(newPoem);
-  console.log(poems);
+  data.poems = poems;
+
   response.json(poems);
 });
 
@@ -67,8 +67,9 @@ app.post("/api/poems", (request, response) => {
 app.put("/api/poems/:id", (request, response) => {
   const id = Number(request.params.id);
   const poemDataExclude = poems.filter((u) => u.id !== id);
-  poems = poemDataExclude.concat(request.body);
+  data.poems = poemDataExclude.concat(request.body);
   console.log(poems);
+
   response.json(request.body);
 });
 
