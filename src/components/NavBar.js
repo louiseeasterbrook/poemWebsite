@@ -6,7 +6,7 @@ const NavBar = () => {
     <div className="navBar">
       <div className="navBarContainer">
         <Link className="pageTitle" to="/">
-          Poems
+          Word Collections
         </Link>
 
         <Link className="navBtn-large navBtn" to="/add">
