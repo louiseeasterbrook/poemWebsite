@@ -62,7 +62,7 @@ app.post("/api/poems", (request, response) => {
 
   //send error  if authroisation token does not match
   if (!getTokenFrom(request)) {
-    return response.status(400).json({
+    return response.status(401).json({
       error: "not authorised to make a post",
     });
   }
@@ -84,9 +84,11 @@ app.post("/api/poems", (request, response) => {
 //update vote
 app.post("/api/poems/:id", (request, response) => {
   const id = Number(request.params.id);
-  const poemDataExclude = poems.filter((u) => u.id !== id);
-  data.poems = poemDataExclude.concat(request.body);
-  console.log(poems);
+
+  const poemsUpdated = poems.map((el) => (el.id === id ? request.body : el));
+  poems = poemsUpdated;
+  data.poems = poemsUpdated;
+  console.log(request.body);
 
   response.json(request.body);
 });
