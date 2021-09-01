@@ -7,7 +7,7 @@ import Votes from "../components/Votes";
 import ReactMarkdown from "react-markdown";
 import MiniSplash from "../components/MiniSplash";
 
-const PoemScreen = () => {
+const PoemScreen = ({ poems, setPoems }) => {
   let { id } = useParams();
   const [poem, setPoem] = useState([]);
   let updatedPoem = {};
@@ -16,8 +16,6 @@ const PoemScreen = () => {
   // GET DATA FROM SERVER
   useEffect(() => {
     axios.get(`http://localhost:3001/api/poems/${id}`).then((response) => {
-      console.log("promise fulfilled");
-      console.log(response.data);
       setPoem(response.data);
     });
   }, []);
@@ -27,10 +25,16 @@ const PoemScreen = () => {
     updatedPoem = { ...poem, votes: newNum };
 
     axios
-      .put(`http://localhost:3001/api/poems/${id}`, updatedPoem)
+      .post(`http://localhost:3001/api/poems/${id}`, updatedPoem)
       .then((response) => {
-        console.log(response.data);
+        //updates poem in current page
         setPoem(updatedPoem);
+
+        //updates poems list in app.js
+        let newPoems = poems.map((el) =>
+          el.id === Number(id) ? updatedPoem : el
+        );
+        setPoems(newPoems);
       });
   };
 
