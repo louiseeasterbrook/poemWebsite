@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 var cors = require("cors");
-
 const fs = require("fs");
+const jwt = require("jsonwebtoken");
 
 let rawdata = fs.readFileSync("poems.json");
 let data = JSON.parse(rawdata);
@@ -30,7 +30,7 @@ app.get("/api/poems/:id", (request, response) => {
     response.json(poemData);
   } else {
     response.status(404).end();
-    res.send("<h1>Poem not found</h1>");
+    res.send("Poem not found");
   }
 });
 
@@ -39,13 +39,31 @@ const generateId = () => {
   return maxId + 1;
 };
 
+//retrieve token value
+const getTokenFrom = (request) => {
+  const authorization = request.get("bob");
+  //check of header is there & check if equals desired value
+  if (authorization && authorization === "Bobalooba") {
+    return true;
+  }
+  return false;
+};
+
 //ADD A UNIT
 app.post("/api/poems", (request, response) => {
   const body = request.body;
 
+  //send error if input content is missing
   if (!body.title || !body.author || !body.text) {
     return response.status(400).json({
       error: "content missing",
+    });
+  }
+
+  //send error  if authroisation token does not match
+  if (!getTokenFrom(request)) {
+    return response.status(400).json({
+      error: "not authorised to make a post",
     });
   }
 
@@ -64,7 +82,7 @@ app.post("/api/poems", (request, response) => {
 });
 
 //update vote
-app.put("/api/poems/:id", (request, response) => {
+app.post("/api/poems/:id", (request, response) => {
   const id = Number(request.params.id);
   const poemDataExclude = poems.filter((u) => u.id !== id);
   data.poems = poemDataExclude.concat(request.body);
