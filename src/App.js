@@ -30,7 +30,7 @@ function App() {
             <HomeScreen poemData={poems} />
           </Route>
           <Route exact path="/poem/:id">
-            <PoemScreen />
+            <PoemScreen setPoems={setPoems} poems={poems} />
           </Route>
           <Route exact path="/add">
             <AddScreen setPoems={setPoems} poemData={poems} />
