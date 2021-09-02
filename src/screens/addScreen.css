@@ -8,6 +8,45 @@
   align-items: center;
 }
 
+.formTitle {
+  margin-top: 100px;
+}
+
+.markdownInfo {
+  display: flex;
+  align-items: center;
+  /* background-color: blueviolet; */
+}
+
+/* p {
+  text-align: center;
+} */
+
+.markdownInfo div {
+  background-color: rgb(214, 214, 214);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.markdownInfo div:hover {
+  background-color: rgb(226, 226, 226);
+}
+/* 
+.markdownInfo div:hover::after {
+  content: " hello";
+  width: 50px;
+  background-color: rgb(168, 27, 27);
+} */
+
+.form {
+  margin-top: 2rem;
+}
+
 /* @media (max-width: 1100px) {
 
 } */

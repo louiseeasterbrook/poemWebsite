@@ -1,36 +1,52 @@
 .poemScreen {
-  width: 65%;
-  max-width: 850px;
+  width: 80%;
+  max-width: 950px;
   margin: auto;
-  margin-top: 2rem;
 }
+
+.poemScreenContent {
+  padding-top: 100px;
+  /* background-color: blue; */
+}
+
+.showTitle {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
 .authorDisplay {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.poemTitle {
-  text-align: center;
-  margin: 0.6rem;
+.authorDisplay::after {
+  position: absolute;
+  transform: translateY(3rem);
+  content: "";
+  width: 80%;
+  height: 1px;
+  background-color: rgb(59, 59, 59);
 }
 
-.poemText {
-  margin: 2rem;
-  line-height: 25px;
+.poemHolder {
+  /* background-color: aqua; */
+  margin-top: 1rem;
 }
 
-/* @media (max-width: 1100px) {
-} */
+.poemScreenText {
+  margin: auto;
+  /* background-color: blueviolet; */
+  width: fit-content;
+  /* background-color: rgb(235, 235, 235); */
+  padding: 2rem 4rem;
+  line-height: 26px;
+  /* border-top: 1px solid black; */
+}
 
 @media (max-width: 900px) {
   .poemScreen {
-    width: 80%;
-  }
-}
-
-@media (max-width: 720px) {
-  .poemScreen {
-    width: 95%;
+    width: 90%;
   }
 }

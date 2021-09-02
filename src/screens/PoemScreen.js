@@ -6,6 +6,7 @@ import axios from "axios";
 import Votes from "../components/Votes";
 import ReactMarkdown from "react-markdown";
 import MiniSplash from "../components/MiniSplash";
+import { Redirect } from "react-router";
 
 const PoemScreen = ({ poems, setPoems }) => {
   let { id } = useParams();
@@ -39,18 +40,19 @@ const PoemScreen = ({ poems, setPoems }) => {
   };
 
   return (
-    <>
-      <MiniSplash />
-      <div className="poemScreen">
-        <h2 className="poemTitle">{poem.title}</h2>
+    <div className="poemScreen">
+      <div className="poemScreenContent">
+        <h2 className="showTitle">{poem.title}</h2>
         <div className="authorDisplay">
           <img src={userPic} alt="author" className="authorImg" />
           <p className="authorName">{poem.author}</p>
         </div>
-        <ReactMarkdown className="poemText" children={poem.text} />
+        <div className="poemHolder">
+          <ReactMarkdown className="poemScreenText" children={poem.text} />
+        </div>
         <Votes votes={poem.votes} voteAdd={updateVotes} />
       </div>
-    </>
+    </div>
   );
 };
 

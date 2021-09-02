@@ -1,24 +1,27 @@
 .homeScreen {
+  width: 100%;
+  position: relative;
+}
+
+.mainSection {
   width: 80%;
   max-width: 950px;
   margin: auto;
 }
 
 .poemContainer {
-  margin: 2rem 0;
+  /* background-color: blueviolet; */
+  margin: 1.5rem 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
 @media (max-width: 1100px) {
-  .poemContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 900px) {
-  .homeScreen {
+  .mainSection {
     width: 90%;
   }
 }

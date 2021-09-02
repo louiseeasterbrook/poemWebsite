@@ -1,8 +1,11 @@
 .navBar {
-  /* background-color: rgb(29, 29, 29); */
-  height: 5rem;
+  height: 50px;
   display: flex;
   justify-content: center;
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  background-color: rgb(53, 53, 53);
 }
 
 .navBarContainer {
@@ -14,11 +17,16 @@
   align-items: center;
 }
 
+/* .logo {
+  background-color: brown;
+} */
+
 .pageTitle {
   text-decoration: none;
-  font-size: 2.5rem;
+  font-size: 1rem;
   letter-spacing: 3px;
-  color: Black;
+  color: rgb(255, 255, 255);
+  margin-right: 0.6rem;
 }
 
 .pageTitle:hover {
@@ -26,38 +34,49 @@
   color: rgb(50, 195, 205);
 }
 
+.featherIcon {
+  color: white;
+}
+
 .navBtn {
   text-align: center;
   vertical-align: middle;
   text-decoration: none;
-  background-color: rgb(50, 195, 205);
-  height: 2.5rem;
-  line-height: 2.5rem;
+  background-color: rgb(131, 131, 131);
+  height: 1.5rem;
+  line-height: 1.5rem;
   color: white;
 }
 
+.plusIcon {
+  width: 20px;
+  height: 20px;
+  /* background-color: brown; */
+}
+
 .navBtn-large {
-  width: 10rem;
+  width: 7rem;
   letter-spacing: 1px;
-  border-radius: 2rem;
+  border-radius: 3px;
 }
 
 .navBtn-small {
-  width: 2.5rem;
+  width: 1.5rem;
   display: none;
-  font-size: 2rem;
   border-radius: 100%;
 }
 
 @media (max-width: 900px) {
   .navBarContainer {
-    width: 80%;
+    width: 90%;
   }
   .navBtn {
     display: none;
   }
   .navBtn-small {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .pageTitle {

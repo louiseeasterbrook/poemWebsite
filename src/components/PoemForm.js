@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./poemForm.css";
 
-const PoemForm = (props) => {
+const PoemForm = ({ addPoem }) => {
   const [poem, setPoem] = useState({ title: "", text: "", author: "" });
 
   const createPoem = (event) => {
     event.preventDefault();
-    props.addPoem(poem);
-    setPoem({ title: "", text: "", author: "" });
+    addPoem(poem);
+    // setPoem({ title: "", text: "", author: "" });
   };
 
   const poemUpdate = (event) => {
