@@ -7,6 +7,7 @@ import axios from "axios";
 import HomeScreen from "./screens/HomeScreen";
 import PoemScreen from "./screens/PoemScreen";
 import AddScreen from "./screens/AddScreen";
+import Footer from "./components/Footer";
 
 //components
 import NavBar from "./components/NavBar";
@@ -24,6 +25,7 @@ function App() {
   return (
     <Router>
       <NavBar />
+
       <main>
         <Switch>
           <Route exact path="/">
@@ -37,6 +39,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </Router>
   );
 }

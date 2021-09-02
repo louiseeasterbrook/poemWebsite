@@ -1,0 +1,7 @@
+.footerContainer {
+  align-self: baseline;
+  background-color: rgb(53, 53, 53);
+  width: 100vw;
+  height: 40px;
+  margin-top: auto;
+}
