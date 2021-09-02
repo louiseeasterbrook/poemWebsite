@@ -1,22 +1,32 @@
 import "./poemItem.css";
 import userPic from "../user.png";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 const PoemItem = (props) => {
   var firstLine = "";
   var secondLine = "";
   var thirdLine = "";
+
+  //sets the value of first 3 lines
   const getLines = () => {
     if (props.poemText.split("\n")[0]) {
-      firstLine = props.poemText.split("\n")[0];
+      firstLine = lengthCheck(props.poemText.split("\n")[0]);
     }
     if (props.poemText.split("\n")[1]) {
-      secondLine = props.poemText.split("\n")[1];
+      secondLine = lengthCheck(props.poemText.split("\n")[1]);
     }
     if (props.poemText.split("\n")[2]) {
-      thirdLine = props.poemText.split("\n")[2];
+      thirdLine = lengthCheck(props.poemText.split("\n")[2]);
     }
+  };
+
+  //checks length of preview string
+  //shortens preview string if too long
+  const lengthCheck = (text) => {
+    var final = "";
+    return text.length > 35
+      ? (final = text.substring(0, 40) + "...")
+      : (final = text);
   };
 
   getLines();
