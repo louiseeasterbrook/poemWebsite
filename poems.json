@@ -2,27 +2,35 @@
   "poems": [
     {
       "id": 0,
-      "title": "Campervan",
-      "author": "Bob Bobalooba",
+      "title": "The Sunset",
+      "author": "John Yellow",
       "authorid": 0,
-      "text": "hello this is the poem",
-      "votes": 3
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit,  \nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.   \nUt enim ad minim veniam, quis nostrud exercitation  \nullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  \nvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,  \nsunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "votes": 4
     },
     {
       "id": 1,
-      "title": "Woolies",
-      "author": "Bob Bobalooba",
+      "title": "Wind and Apples",
+      "author": "Greg Purple",
       "authorid": 0,
-      "text": "this is about woolies\nthis is second line\nthird line si this one",
+      "text": "Lorem ipsum dolor sit amet,  \nconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et  \ndolore magna aliqua. Consequat interdum varius sit amet mattis vulputate enim. Egestas congue  \nquisque egestas diam in arcu. Pharetra diam sit amet nisl. Mauris nunc congue nisi vitae suscipit tellus mauris.  \nNeque aliquam vestibulum morbi blandit cursus risus at ultrices. Ullamcorper malesuada proin libero  \nnunc consequat interdum. Nulla malesuada pellentesque elit eget gravida cum sociis natoque penatibus.  \nTincidunt eget nullam non nisi est sit amet facilisis magna. Nibh tellus molestie nunc non blandit massa \n enim nec dui. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum.  \nElementum nibh tellus molestie nunc non blandit massa enim nec. Ullamcorper eget nulla  \nfacilisi etiam dignissim diam. Pellentesque id nibh tortor id. Nisl tincidunt eget nullam non nisi est sit.  \nPorttitor lacus luctus accumsan tortor posuere ac ut consequat.  \nEu turpis egestas pretium aenean pharetra magna ac placerat vestibulum.  \nViverra orci sagittis eu volutpat odio facilisis.",
       "votes": 2
     },
     {
       "id": 2,
-      "title": "Coles",
-      "author": "Bob Bobalooba",
+      "title": "Darkness",
+      "author": "Luna Wills",
       "authorid": 0,
-      "text": "this is about Coles",
-      "votes": 2
+      "text": "Lorem ipsum dolor sit amet,  \nconsectetur adipiscing elit,  \nsed do eiusmod tempor  \nincididunt ut labore et dolore magna aliqua.  \nUt enim ad minim veniam,  \nquis nostrud exercitation ullamco  \nlaboris nisi ut aliquip  \nex ea commodo consequat.  \nDuis aute irure  \ndolor in reprehenderit in voluptate velit esse cillum  \ndolore eu fugiat nulla pariatur.  \nExcepteur sint occaecat cupidatat non proident,  \nsunt in culpa qui officia deserunt  \nmollit anim id est laborum.",
+      "votes": 7
+    },
+    {
+      "id": 3,
+      "title": "And then it Goes",
+      "author": "Penny Grent",
+      "authorid": 0,
+      "text": "Lorem ipsum dolor sit amet,  \nconsectetur adipiscing elit,  \nsed do eiusmod tempor  \nincididunt ut labore  \net dolore magna aliqua.  \nUt enim ad minim veniam,  \nquis nostrud exercitation ullamco  \nlaboris nisi ut aliquip  \nex ea commodo consequat.  \nDuis aute irure  \ndolor in reprehenderit in  \nvoluptate velit esse cillum  \ndolore eu fugiat nulla pariatur.  \nExcepteur sint occaecat  \ncupidatat non proident,  \nsunt in culpa qui officia deserunt  \nmollit anim id est  \nlaborum.",
+      "votes": 4
     }
   ]
 }
