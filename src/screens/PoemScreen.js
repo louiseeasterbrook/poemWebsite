@@ -1,12 +1,12 @@
 import "./poemScreen.css";
-import userPic from "../user.png";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Votes from "../components/Votes";
 import ReactMarkdown from "react-markdown";
-import MiniSplash from "../components/MiniSplash";
 import { Redirect } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 const PoemScreen = ({ poems, setPoems }) => {
   let { id } = useParams();
@@ -44,7 +44,7 @@ const PoemScreen = ({ poems, setPoems }) => {
       <div className="poemScreenContent">
         <h2 className="showTitle">{poem.title}</h2>
         <div className="authorDisplay">
-          <img src={userPic} alt="author" className="authorImg" />
+          <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
           <p className="authorName">{poem.author}</p>
         </div>
         <div className="poemHolder">

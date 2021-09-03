@@ -14,6 +14,11 @@
   margin-bottom: 1rem;
 }
 
+.authorDisplay .userIcon {
+  width: 30px;
+  height: 30px;
+}
+
 .authorDisplay {
   display: flex;
   align-items: center;

@@ -1,6 +1,7 @@
 import "./poemItem.css";
-import userPic from "../user.png";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 const PoemItem = (props) => {
   var firstLine = "";
@@ -33,7 +34,7 @@ const PoemItem = (props) => {
 
   return (
     <div onClick={props.toPoem} className="poemItemContainer">
-      <Link to={`/poem/${props.poemId}`}>
+      <Link className="Linked" to={`/poem/${props.poemId}`}>
         <div className="poemContent">
           <h1>{props.poemTitle}</h1>
           <p>{firstLine}</p>
@@ -42,7 +43,8 @@ const PoemItem = (props) => {
         </div>
 
         <div className="authorSection">
-          <img src={userPic} alt="author" className="authorImg" />
+          <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
+          {/* <img src={userPic} alt="author" className="authorImg" /> */}
           <p className="authorName">{props.author}</p>
         </div>
       </Link>
