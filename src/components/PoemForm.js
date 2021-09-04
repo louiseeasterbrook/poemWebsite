@@ -1,13 +1,14 @@
-import React, { useState } from "react";
 import "./poemForm.css";
+import React, { useState } from "react";
 
-const PoemForm = ({ addPoem }) => {
+const PoemForm = ({ addPoem, setError }) => {
   const [poem, setPoem] = useState({ title: "", text: "", author: "" });
 
   const createPoem = (event) => {
     event.preventDefault();
     addPoem(poem);
-    // setPoem({ title: "", text: "", author: "" });
+    //remove error message
+    setError("");
   };
 
   const poemUpdate = (event) => {
@@ -44,7 +45,9 @@ const PoemForm = ({ addPoem }) => {
           onChange={poemUpdate}
         />
 
-        <button type="submit">Submit</button>
+        <button className="submitButton" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
