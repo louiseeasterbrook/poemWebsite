@@ -20,7 +20,7 @@ const PoemScreen = ({ poems, setPoems }) => {
   // GET DATA FROM SERVER
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/api/poems/${id}`)
+      .get(`/api/poems/${id}`)
       .then((response) => {
         setPoem(response.data);
       })
@@ -33,18 +33,17 @@ const PoemScreen = ({ poems, setPoems }) => {
     newNum = Number(poem.votes) + 1;
     updatedPoem = { ...poem, votes: newNum };
 
-    axios
-      .post(`http://localhost:3001/api/poems/${id}`, updatedPoem)
-      .then((response) => {
-        //updates poem in current page
-        setPoem(updatedPoem);
+    //UPDATE POEM VOTES
+    axios.post(`/api/poems/${id}`, updatedPoem).then((response) => {
+      //updates poem in current page
+      setPoem(updatedPoem);
 
-        //updates poems list in app.js
-        let newPoems = poems.map((el) =>
-          el.id === Number(id) ? updatedPoem : el
-        );
-        setPoems(newPoems);
-      });
+      //updates poems list in app.js
+      let newPoems = poems.map((el) =>
+        el.id === Number(id) ? updatedPoem : el
+      );
+      setPoems(newPoems);
+    });
   };
 
   //render error if error has occured
