@@ -4,6 +4,7 @@ var cors = require("cors");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
 const { json } = require("express");
+require("dotenv").config();
 
 let rawdata = fs.readFileSync("poems.json");
 let data = JSON.parse(rawdata);
@@ -32,7 +33,7 @@ app.get("/api/poems/:id", (request, response) => {
     response.json(poemData);
   } else {
     response.status(404).end();
-    res.send("Poem not found");
+    response.send("Poem not found");
   }
 });
 
@@ -96,13 +97,12 @@ app.post("/api/poems/:id", (request, response) => {
 
 //MIDDLEWARE
 const unknownEndpoint = (request, response) => {
-  console.log("made ");
   response.status(404).send({ error: "unknown endpoint" });
 };
 
 app.use(unknownEndpoint);
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
