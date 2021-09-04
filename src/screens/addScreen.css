@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom:3rem;
 }
 
 .formTitle {
@@ -18,9 +19,9 @@
   /* background-color: blueviolet; */
 }
 
-/* p {
+.instructions {
   text-align: center;
-} */
+}
 
 .markdownInfo div {
   background-color: rgb(214, 214, 214);
@@ -35,13 +36,21 @@
 
 .markdownInfo div:hover {
   background-color: rgb(226, 226, 226);
+  position:relative;
+
 }
-/* 
+
 .markdownInfo div:hover::after {
-  content: " hello";
-  width: 50px;
-  background-color: rgb(168, 27, 27);
-} */
+  content: "Typing using Markdown will allow you to start new lines in your Poem Text\ATo start a new line you must type 2 spaces at the end of your line and then press the enter key";
+  white-space: pre-wrap;
+  width: 250px;
+  padding:1rem;
+  background-color: #9ad1d4;
+  opacity:0.7;
+  position:absolute;
+  top:30px;
+  left:-50px;
+}
 
 .form {
   margin-top: 2rem;
