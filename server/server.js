@@ -3,6 +3,7 @@ const app = express();
 var cors = require("cors");
 const fs = require("fs");
 const jwt = require("jsonwebtoken");
+const { json } = require("express");
 
 let rawdata = fs.readFileSync("poems.json");
 let data = JSON.parse(rawdata);
@@ -11,6 +12,7 @@ let poems = data.poems;
 //MIDDLE WARE START1
 app.use(cors());
 app.use(express.json());
+app.use(express.static("build"));
 
 //HOMEPAGE
 app.get("/", (request, response) => {
@@ -88,13 +90,13 @@ app.post("/api/poems/:id", (request, response) => {
   const poemsUpdated = poems.map((el) => (el.id === id ? request.body : el));
   poems = poemsUpdated;
   data.poems = poemsUpdated;
-  console.log(request.body);
 
   response.json(request.body);
 });
 
 //MIDDLEWARE
 const unknownEndpoint = (request, response) => {
+  console.log("made ");
   response.status(404).send({ error: "unknown endpoint" });
 };
 
