@@ -4,17 +4,15 @@
   align-items: center;
   background-color: rgb(219, 219, 219);
   width: fit-content;
-  padding: 0 8px;
+  padding: 4px 8px;
   border-radius: 10px;
   margin: auto;
 }
 
 .votesContainer p {
-  /* background-color: rebeccapurple; */
   width: 2rem;
   text-align: center;
   line-height: 2rem;
-  /* background-color: blue; */
 }
 
 .votesContainer button {
@@ -25,7 +23,6 @@
   border-radius: 4rem;
   width: 2rem;
   cursor: pointer;
-  /* display: inline-block; */
   background-color: rgb(230, 230, 230);
 }
 

@@ -35,7 +35,7 @@ textArea {
   padding-top: 3px;
 }
 
-button {
+.submitButton {
   margin-top: 0.7rem;
   width: 100%;
   line-height: 25px;
@@ -47,6 +47,10 @@ button {
   background-color: #9ad1d4;
   border: none;
   border-radius: 3px;
+}
+.submitButton:hover {
+  background-color: #84c1c4;
+  transition: 0.3s;
 }
 
 @media (max-width: 900px) {

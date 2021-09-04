@@ -17,13 +17,9 @@
   align-items: center;
 }
 
-/* .logo {
-  background-color: brown;
-} */
-
 .pageTitle {
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   letter-spacing: 3px;
   color: rgb(255, 255, 255);
   margin-right: 0.6rem;
@@ -31,7 +27,7 @@
 
 .pageTitle:hover {
   transition: 0.3s;
-  color: rgb(50, 195, 205);
+  color: #9ad1d4;
 }
 
 .featherIcon {
@@ -48,10 +44,14 @@
   color: white;
 }
 
+.navBtn:hover {
+  background-color: rgb(112, 112, 112);
+  transition: 0.3s;
+}
+
 .plusIcon {
   width: 20px;
   height: 20px;
-  /* background-color: brown; */
 }
 
 .navBtn-large {
@@ -77,9 +77,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .pageTitle {
-    font-size: 1.5rem;
   }
 }
