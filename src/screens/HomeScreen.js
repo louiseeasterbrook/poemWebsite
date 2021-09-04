@@ -22,6 +22,7 @@ const HomeScreen = ({ poemData }) => {
               poemTitle={el.title}
               poemText={el.text}
               poemId={el.id}
+              votes={el.votes}
             />
           ))}
         </div>
