@@ -2,12 +2,13 @@ import "./poemScreen.css";
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Votes from "../components/Votes";
 import ReactMarkdown from "react-markdown";
-import { Redirect } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+
+//components
 import Notification from "../components/Notification";
+import Votes from "../components/Votes";
 
 const PoemScreen = ({ poems, setPoems }) => {
   let { id } = useParams();
