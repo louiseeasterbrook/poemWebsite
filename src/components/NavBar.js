@@ -8,7 +8,6 @@ const NavBar = () => {
   return (
     <div className="navBar">
       <div className="navBarContainer">
-        {/* <FontAwesomeIcon icon={faFort} /> */}
         <div className="logo">
           <Link className="pageTitle" to="/">
             Word Collections
@@ -18,7 +17,6 @@ const NavBar = () => {
         <Link className="navBtn-large navBtn" to="/add">
           Add
         </Link>
-
         <Link className="navBtn-small navBtn" to="/add">
           <FontAwesomeIcon icon={faPlus} className="plusIcon" />
         </Link>
