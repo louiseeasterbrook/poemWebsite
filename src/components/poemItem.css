@@ -23,22 +23,39 @@
   margin-bottom: 0.7rem;
 }
 
-.authorSection {
+.bottomSection {
   display: flex;
   height: 2.5rem;
   align-items: center;
   border-top: 1px solid grey;
   padding: 0.5rem;
+  justify-content: space-between;
+}
+
+.authorSection {
+  display: flex;
+  align-items: center;
+}
+
+.votesSection {
+  display: flex;
+  align-items: center;
 }
 
 .authorName {
   margin-left: 0.6rem;
 }
 
-.authorSection .userIcon {
+.bottomSection .userIcon {
   width: 25px;
   height: 25px;
   padding: 5px;
+}
+
+.bottomSection .trophyIcon {
+  width: 18px;
+  height: 18px;
+  padding: 10px;
 }
 
 @media (max-width: 1100px) {

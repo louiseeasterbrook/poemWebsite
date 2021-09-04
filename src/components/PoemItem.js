@@ -2,6 +2,7 @@ import "./poemItem.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 const PoemItem = (props) => {
   var firstLine = "";
@@ -42,10 +43,15 @@ const PoemItem = (props) => {
           <p>{thirdLine}</p>
         </div>
 
-        <div className="authorSection">
-          <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
-          {/* <img src={userPic} alt="author" className="authorImg" /> */}
-          <p className="authorName">{props.author}</p>
+        <div className="bottomSection">
+          <div className="authorSection">
+            <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
+            <p className="authorName">{props.author}</p>
+          </div>
+          <div className="votesSection">
+            <p>{props.votes}</p>
+            <FontAwesomeIcon icon={faTrophy} className="trophyIcon" />
+          </div>
         </div>
       </Link>
     </div>
