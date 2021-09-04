@@ -1,6 +1,5 @@
 .poemFormContainer {
   margin-top: 2rem;
-  /* background-color: blue; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,8 +8,6 @@
 
 form {
   width: 70%;
-  /* background-color: white; */
-  /* overflow: hidden; */
 }
 
 label {
@@ -46,19 +43,20 @@ button {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2.5px;
+  padding: 0.3rem;
+  background-color: #9ad1d4;
+  border: none;
+  border-radius: 3px;
 }
 
 @media (max-width: 900px) {
   form {
     width: 80%;
-    /* background-color: rgb(104, 100, 109); */
-    /* background-color: blue; */
   }
 }
 
 @media (max-width: 720px) {
   form {
     width: 95%;
-    /* background-color: blueviolet; */
   }
 }

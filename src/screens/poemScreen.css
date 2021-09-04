@@ -2,17 +2,17 @@
   width: 80%;
   max-width: 950px;
   margin: auto;
-  margin-bottom:3rem;
+  margin-bottom: 3rem;
 }
 
 .poemScreenContent {
   padding-top: 100px;
-  /* background-color: blue; */
 }
 
 .showTitle {
   margin: 0;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .authorDisplay .userIcon {
@@ -45,13 +45,10 @@
   width: fit-content;
   padding: 2rem 0;
   line-height: 26px;
-
- 
 }
 
 @media (max-width: 900px) {
   .poemScreen {
     width: 90%;
-  
   }
 }
