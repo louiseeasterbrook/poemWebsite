@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+### Word Collections Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Website Front End
 
-## Available Scripts
+The front end web application will be written using React and supports the following functionality.
 
-In the project directory, you can run:
+The front page displays a list of poem previews showing the first few lines of each poem. The poems displayed are those that are most highly rated (most votes).
 
-### `npm start`
+Clicking on a poem title (or maybe on the poem or a button saying "read more...") navigates to a page for that poem showing the whole text of the poem, nicely formatted
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There is a link in the site navigation to a form to add a new poem, once the fields are completed and the user clicks submit, the form is sent to the backend, if all goes well, the new poem is shown on it's own page
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Each poem page has an upvote button to record votes for the poem, clicking the button sends a request to the API to add to the votes for the poem
 
-### `npm test`
+Poem texts are written using Markdown and when displayed on the page, the Markdown is interpreted to give a nice layout (eg. using the react-markdown package) (note that to create line breaks you end a line with two spaces, you could refer your users to https://www.markdownguide.org/basic-syntax/ for reference)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Website Back End
 
-### `npm run build`
+The backend of this website is an Express API server. The informaiton is not stored on a database so no information will
+be saved when a full page refresh occurs.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The API has the following endpoints:
+GET /api/poems - returns a list of poem records
+GET /api/poems/:id - returns the record for the poem with the given id
+POST /api/poems - adds a new poem to the collection, POST body is the poem JSON without the id or votes fields, response includes the new poem id
+POST /api/poems/:id - adds an upvote for the poem with the given id
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Poems records have id, author, title, text and votes fields. id is a unique integer id; votes is an integer count of upvotes for the poem; the remaining fields are text.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Authentication
 
-### `npm run eject`
+This website does not have server authentication, but to add a level of security ther server will only accept posts that have the
+header: bob:bobalobba
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Running the Website
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This Website has both the backend and front end in one project.
+The server is currently integrated with the frontend - to run the website 'npm run dev' should be run in the terminal.
+'npm run dev' will run on localhost:3001 and allow access to both the frontend and the server from this address
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To see the changes made to the front end files 'npm run build' must be run prior to calling 'npm run dev'.
