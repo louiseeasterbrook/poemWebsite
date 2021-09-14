@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //components
 import Notification from "../components/Notification";
@@ -17,6 +18,7 @@ const PoemScreen = ({ poems, setPoems }) => {
   let updatedPoem = {};
   let newNum = 0;
   const [error, setError] = useState("");
+  let history = useHistory();
 
   // GET DATA FROM SERVER
   useEffect(() => {
@@ -48,6 +50,19 @@ const PoemScreen = ({ poems, setPoems }) => {
       });
   };
 
+  const deletePoem = () => {
+    console.log("delete");
+    axios.delete(`http://localhost:3001/api/poems/${id}`).then((response) => {
+      //removes poem from poem array
+      let newPoems = poems.filter((el) => el.id !== id);
+      console.log(newPoems);
+      //updates poems list in app.js
+      setPoems(newPoems);
+      //navigate back to home screen
+      history.push("/");
+    });
+  };
+
   //render error if error has occured
   if (Boolean(error)) {
     return (
@@ -74,6 +89,7 @@ const PoemScreen = ({ poems, setPoems }) => {
           <Link to={`/update/${id}`} yes={poem.author}>
             <button>Update</button>
           </Link>
+          <button onClick={deletePoem}>Delete</button>
         </div>
       </div>
     );
