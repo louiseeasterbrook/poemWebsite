@@ -7,6 +7,7 @@ import axios from "axios";
 import HomeScreen from "./screens/HomeScreen";
 import PoemScreen from "./screens/PoemScreen";
 import AddScreen from "./screens/AddScreen";
+import UpdateScreen from "./screens/UpdateScreen";
 
 //components
 import NavBar from "./components/NavBar";
@@ -16,8 +17,8 @@ function App() {
 
   //GET DATA FROM SERVER
   useEffect(() => {
-    axios.get("/api/poems").then((response) => {
-      setPoems(response.data.poems);
+    axios.get("http://localhost:3001/api/poems").then((response) => {
+      setPoems(response.data);
     });
   }, []);
 
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/add">
             <AddScreen setPoems={setPoems} poemData={poems} />
+          </Route>
+          <Route exact path="/update/:id">
+            <UpdateScreen setPoems={setPoems} poemData={poems} />
           </Route>
         </Switch>
       </main>
