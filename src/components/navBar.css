@@ -1,5 +1,6 @@
 .navBar {
-  height: 50px;
+  min-height: 50px;
+  height: 6vh;
   display: flex;
   justify-content: center;
   z-index: 100;
