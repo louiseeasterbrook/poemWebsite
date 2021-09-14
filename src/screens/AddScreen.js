@@ -7,26 +7,27 @@ import { useHistory } from "react-router-dom";
 import PoemForm from "../components/PoemForm";
 import Notification from "../components/Notification";
 
-const AddScreen = ({ setPoems }) => {
+const AddScreen = ({ setPoems, poemData }) => {
   const [error, setError] = useState("");
   let errorShow = false;
   let history = useHistory();
 
   //ADD FUNCTION
+
   const addPoem = (newPoem) => {
     //setting header token value
     const config = { headers: { bob: "Bobalooba" } };
 
     axios
-      .post("/api/poems", newPoem, config)
+      .post("http://localhost:3001/api/poems", newPoem, config)
       .then((response) => {
-        setPoems(response.data);
+        let newPoems = poemData;
+        //add new poem to current poem
+        newPoems.push(response.data);
+        setPoems(newPoems);
 
-        //get id of new poem
-        let newPoem = response.data.slice(-1);
-        let newPoemId = newPoem[0].id;
         //navigate to new poem display
-        history.push(`/poem/${newPoemId}`);
+        history.push(`/poem/${response.data.id}`);
       })
       .catch((error) => {
         setError("Please fill in all input sections");
