@@ -1,108 +1,119 @@
-const express = require("express");
-const app = express();
-var cors = require("cors");
-const fs = require("fs");
-const jwt = require("jsonwebtoken");
-const { json } = require("express");
-require("dotenv").config();
+const app = require("./app"); // the actual Express application
+const http = require("http");
+const config = require("./utils/config");
+const logger = require("./utils/logger");
 
-let rawdata = fs.readFileSync("poems.json");
-let data = JSON.parse(rawdata);
-let poems = data.poems;
-
-//MIDDLE WARE START1
-app.use(cors());
-app.use(express.json());
-app.use(express.static("build"));
-
-//HOMEPAGE
-app.get("/", (request, response) => {
-  response.send("<h1>poem api at /api/poems</h1>");
+const server = http.createServer(app);
+// config.PORT
+server.listen(3001, () => {
+  logger.info(`Server running on port 3001`);
 });
 
-//GET ALL
-app.get("/api/poems", (request, response) => {
-  response.json(data);
-});
+// const express = require("express");
+// const app = express();
+// var cors = require("cors");
+// const fs = require("fs");
+// // const jwt = require("jsonwebtoken");
+// // const { json } = require("express");
+// require("dotenv").config();
 
-//GET ONE POEM
-app.get("/api/poems/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const poemData = poems.find((u) => u.id === id);
-  if (poemData) {
-    response.json(poemData);
-  } else {
-    response.status(404).end();
-    response.send("Poem not found");
-  }
-});
+// let rawdata = fs.readFileSync("poems.json");
+// let data = JSON.parse(rawdata);
+// let poems = data.poems;
 
-const generateId = () => {
-  const maxId = poems.length > 0 ? Math.max(...poems.map((n) => n.id)) : 0;
-  return maxId + 1;
-};
+// //MIDDLE WARE START1
+// app.use(cors());
+// app.use(express.json());
+// app.use(express.static("build"));
 
-//retrieve token value
-const getTokenFrom = (request) => {
-  const authorization = request.get("bob");
-  //check of header is there & check if equals desired value
-  if (authorization && authorization === "Bobalooba") {
-    return true;
-  }
-  return false;
-};
+// //HOMEPAGE
+// app.get("/", (request, response) => {
+//   response.send("<h1>poem api at /api/poems</h1>");
+// });
 
-//ADD A UNIT
-app.post("/api/poems", (request, response) => {
-  const body = request.body;
+// //GET ALL
+// app.get("/api/poems", (request, response) => {
+//   response.json(data);
+// });
 
-  //send error if input content is missing
-  if (!body.title || !body.author || !body.text) {
-    return response.status(400).json({
-      error: "content missing",
-    });
-  }
+// //GET ONE POEM
+// app.get("/api/poems/:id", (request, response) => {
+//   const id = Number(request.params.id);
+//   const poemData = poems.find((u) => u.id === id);
+//   if (poemData) {
+//     response.json(poemData);
+//   } else {
+//     response.status(404).end();
+//     response.send("Poem not found");
+//   }
+// });
 
-  //send error  if authroisation token does not match
-  if (!getTokenFrom(request)) {
-    return response.status(401).json({
-      error: "not authorised to make a post",
-    });
-  }
+// const generateId = () => {
+//   const maxId = poems.length > 0 ? Math.max(...poems.map((n) => n.id)) : 0;
+//   return maxId + 1;
+// };
 
-  const newPoem = {
-    id: generateId(),
-    title: body.title,
-    author: body.author,
-    text: body.text,
-    votes: Number(0),
-  };
+// //retrieve token value
+// const getTokenFrom = (request) => {
+//   const authorization = request.get("bob");
+//   //check of header is there & check if equals desired value
+//   if (authorization && authorization === "Bobalooba") {
+//     return true;
+//   }
+//   return false;
+// };
 
-  poems = poems.concat(newPoem);
-  data.poems = poems;
+// //ADD A UNIT
+// app.post("/api/poems", (request, response) => {
+//   const body = request.body;
 
-  response.json(poems);
-});
+//   //send error if input content is missing
+//   if (!body.title || !body.author || !body.text) {
+//     return response.status(400).json({
+//       error: "content missing",
+//     });
+//   }
 
-//update vote
-app.post("/api/poems/:id", (request, response) => {
-  const id = Number(request.params.id);
+//   //send error  if authroisation token does not match
+//   if (!getTokenFrom(request)) {
+//     return response.status(401).json({
+//       error: "not authorised to make a post",
+//     });
+//   }
 
-  const poemsUpdated = poems.map((el) => (el.id === id ? request.body : el));
-  poems = poemsUpdated;
-  data.poems = poemsUpdated;
+//   const newPoem = {
+//     id: generateId(),
+//     title: body.title,
+//     author: body.author,
+//     text: body.text,
+//     votes: Number(0),
+//   };
 
-  response.json(request.body);
-});
+//   poems = poems.concat(newPoem);
+//   data.poems = poems;
 
-//MIDDLEWARE
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
-};
+//   response.json(poems);
+// });
 
-app.use(unknownEndpoint);
+// //update vote
+// app.post("/api/poems/:id", (request, response) => {
+//   const id = Number(request.params.id);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+//   const poemsUpdated = poems.map((el) => (el.id === id ? request.body : el));
+//   poems = poemsUpdated;
+//   data.poems = poemsUpdated;
+
+//   response.json(request.body);
+// });
+
+// //MIDDLEWARE
+// const unknownEndpoint = (request, response) => {
+//   response.status(404).send({ error: "unknown endpoint" });
+// };
+
+// app.use(unknownEndpoint);
+
+// const PORT = process.env.PORT || 3001;
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
