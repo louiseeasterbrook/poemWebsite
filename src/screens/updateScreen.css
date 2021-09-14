@@ -1,0 +1,69 @@
+.addScreen {
+  width: 80%;
+  max-width: 950px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.formTitle {
+  margin-top: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.markdownInfo {
+  display: flex;
+  align-items: center;
+}
+
+.instructions {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.markdownInfo div {
+  background-color: rgb(214, 214, 214);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.markdownInfo div:hover {
+  background-color: rgb(226, 226, 226);
+  position: relative;
+}
+
+.markdownInfo div:hover::after {
+  content: "Typing using Markdown will allow you to start new lines in your Poem Text\ATo start a new line you must type 2 spaces at the end of your line and then press the enter key";
+  white-space: pre-wrap;
+  width: 250px;
+  padding: 1rem;
+  background-color: #9ad1d4;
+  opacity: 0.8;
+  position: absolute;
+  top: 30px;
+  left: -50px;
+}
+
+.form {
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .addScreen {
+    width: 90%;
+  }
+}
+
+@media (max-width: 720px) {
+  .markdownInfo div:hover::after {
+    left: -260px;
+  }
+}
