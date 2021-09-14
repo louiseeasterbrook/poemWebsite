@@ -5,6 +5,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 //components
 import Notification from "../components/Notification";
@@ -34,16 +35,17 @@ const PoemScreen = ({ poems, setPoems }) => {
     updatedPoem = { ...poem, votes: newNum };
 
     //UPDATE POEM VOTES
-    axios.post(`/api/poems/${id}`, updatedPoem).then((response) => {
-      //updates poem in current page
-      setPoem(updatedPoem);
+    axios
+      .post(`http://localhost:3001/api/poems/${id}`, updatedPoem)
+      .then((response) => {
+        //updates poem in current page
+        setPoem(updatedPoem);
 
-      //updates poems list in app.js
-      let newPoems = poems.map((el) =>
-        el.id === Number(id) ? updatedPoem : el
-      );
-      setPoems(newPoems);
-    });
+        //replaces old poem with updated poem in poem array
+        let newPoems = poems.map((el) => (el.id === id ? updatedPoem : el));
+        //updates poems list in app.js
+        setPoems(newPoems);
+      });
   };
 
   //render error if error has occured
@@ -69,6 +71,9 @@ const PoemScreen = ({ poems, setPoems }) => {
             <ReactMarkdown className="poemScreenText" children={poem.text} />
           </div>
           <Votes votes={poem.votes} voteAdd={updateVotes} />
+          <Link to={`/update/${id}`} yes={poem.author}>
+            <button>Update</button>
+          </Link>
         </div>
       </div>
     );
