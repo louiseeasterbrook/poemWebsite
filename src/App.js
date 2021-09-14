@@ -10,6 +10,9 @@ import AddScreen from "./screens/AddScreen";
 import UpdateScreen from "./screens/UpdateScreen";
 
 //components
+import Footer from "./components/Footer";
+
+//components
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -42,6 +45,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </Router>
   );
 }
