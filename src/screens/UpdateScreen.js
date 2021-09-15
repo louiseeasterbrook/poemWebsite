@@ -64,10 +64,14 @@ const UpdateScreen = ({ setPoems, poemData }) => {
   if (error) {
     errorShow = true;
   }
+
+  //conditional rendering
   if (!show) {
     return (
-      <div>
-        <p>hello</p>
+      <div className="load-screen">
+        <div className="load-object"></div>
+        <div className="load-object"></div>
+        <div className="load-object"></div>
       </div>
     );
   } else {
