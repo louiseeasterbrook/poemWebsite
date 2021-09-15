@@ -1,7 +1,6 @@
 const poemsRouter = require("express").Router();
 const Poem = require("../models/poems");
 const logger = require("../utils/logger");
-const crypto = require("crypto");
 
 //GET ALL
 poemsRouter.get("/", (request, response) => {

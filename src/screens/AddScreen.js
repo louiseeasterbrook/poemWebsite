@@ -19,7 +19,7 @@ const AddScreen = ({ setPoems, poemData }) => {
     const config = { headers: { bob: "Bobalooba" } };
 
     axios
-      .post("http://localhost:3001/api/poems", newPoem, config)
+      .post("/api/poems", newPoem, config)
       .then((response) => {
         let newPoems = poemData;
         //add new poem to current poem

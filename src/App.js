@@ -20,7 +20,7 @@ function App() {
 
   //GET DATA FROM SERVER
   useEffect(() => {
-    axios.get("http://localhost:3001/api/poems").then((response) => {
+    axios.get("/api/poems").then((response) => {
       setPoems(response.data);
     });
   }, []);

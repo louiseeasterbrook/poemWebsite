@@ -37,17 +37,15 @@ const PoemScreen = ({ poems, setPoems }) => {
     updatedPoem = { ...poem, votes: newNum };
 
     //UPDATE POEM VOTES
-    axios
-      .post(`http://localhost:3001/api/poems/${id}`, updatedPoem)
-      .then((response) => {
-        //updates poem in current page
-        setPoem(updatedPoem);
+    axios.post(`/api/poems/${id}`, updatedPoem).then((response) => {
+      //updates poem in current page
+      setPoem(updatedPoem);
 
-        //replaces old poem with updated poem in poem array
-        let newPoems = poems.map((el) => (el.id === id ? updatedPoem : el));
-        //updates poems list in app.js
-        setPoems(newPoems);
-      });
+      //replaces old poem with updated poem in poem array
+      let newPoems = poems.map((el) => (el.id === id ? updatedPoem : el));
+      //updates poems list in app.js
+      setPoems(newPoems);
+    });
   };
 
   const deletePoem = () => {
