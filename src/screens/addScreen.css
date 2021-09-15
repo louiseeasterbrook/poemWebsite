@@ -45,7 +45,9 @@
   white-space: pre-wrap;
   width: 250px;
   padding: 1rem;
-  background-color: #9ad1d4;
+  background-color: rgba(154, 209, 212, 0.7);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
   opacity: 0.8;
   position: absolute;
   top: 30px;

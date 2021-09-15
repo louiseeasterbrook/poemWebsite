@@ -25,9 +25,38 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-bottom: 1rem;
 }
 
-.authorDisplay::after {
+.poembtn-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 230px;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  background-color: rgb(219, 219, 219);
+  width: fit-content;
+  padding: 3px 8px;
+  border-radius: 10px;
+  height: 25px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.btn:hover {
+  transition: 0.3s;
+  background-color: #9ad1d4;
+}
+
+.poembtn-holder::after {
   position: absolute;
   transform: translateY(3rem);
   content: "";
