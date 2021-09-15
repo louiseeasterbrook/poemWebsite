@@ -49,7 +49,7 @@ const UpdateForm = ({ updatePoem, setError, title, text, author }) => {
         />
 
         <button className="submitButton" type="submit">
-          Submit
+          Update Poem
         </button>
       </form>
     </div>
