@@ -82,14 +82,21 @@ const PoemScreen = ({ poems, setPoems }) => {
             <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
             <p className="authorName">{poem.author}</p>
           </div>
+
+          <div className="poembtn-holder">
+            <Votes votes={poem.votes} voteAdd={updateVotes} />
+
+            <Link to={`/update/${id}`} yes={poem.author}>
+              <button className="updatebtn btn">Update</button>
+            </Link>
+            <button onClick={deletePoem} className="deletebtn btn">
+              Delete
+            </button>
+          </div>
+
           <div className="poemHolder">
             <ReactMarkdown className="poemScreenText" children={poem.text} />
           </div>
-          <Votes votes={poem.votes} voteAdd={updateVotes} />
-          <Link to={`/update/${id}`} yes={poem.author}>
-            <button>Update</button>
-          </Link>
-          <button onClick={deletePoem}>Delete</button>
         </div>
       </div>
     );
