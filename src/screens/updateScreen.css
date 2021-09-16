@@ -19,57 +19,11 @@
 }
 
 .load-screen {
-  width: 100vw;
-  height: 100vh;
+  margin: auto;
+  width: 90vw;
+  height: 30vh;
   position: relative;
 }
-
-/* .load-object {
-  position: absolute;
-  background-color: #9ad1d4;
-  width: 30px;
-  height: 30px;
-  border-radius: 100px;
-  animation: loading 0.7s infinite;
-}
-
-.load-screen :nth-child(1) {
-  left: 50%;
-  top: 20%;
-  transform: translate(-50%, -20%);
-}
-.load-screen :nth-child(2) {
-  left: 45%;
-  top: 20%;
-  transform: translate(-50%, -20%);
-  animation-delay: 0.2s;
-}
-.load-screen :nth-child(3) {
-  left: 55%;
-  top: 20%;
-  transform: translate(-50%, -20%);
-  animation-delay: 0.4s;
-}
-
-@keyframes loading {
-  0% {
-    width: 20px;
-    height: 20px;
-  }
-
-  70% {
-    width: 5px;
-    height: 5px;
-  }
-  95% {
-    width: 24px;
-    height: 24px;
-  }
-  100% {
-    width: 20px;
-    height: 20px;
-  }
-} */
 
 @media (max-width: 900px) {
   .addScreen {
