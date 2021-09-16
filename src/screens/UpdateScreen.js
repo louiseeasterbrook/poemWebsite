@@ -23,7 +23,6 @@ const UpdateScreen = ({ setPoems, poemData }) => {
       .then((response) => {
         setPoem(response.data);
         setShow(true);
-        console.log(show);
       })
       .catch((error) => {
         setError("Poem not Found");
@@ -31,8 +30,6 @@ const UpdateScreen = ({ setPoems, poemData }) => {
   }, []);
 
   const updatePoem = (updatedPoem) => {
-    console.log("here2");
-
     const hello = {
       id: poem.id,
       title: updatedPoem.title,
@@ -55,8 +52,8 @@ const UpdateScreen = ({ setPoems, poemData }) => {
         history.push(`/poem/${poem.id}`);
       })
       .catch((error) => {
-        console.log(error);
-        setError("Please fill in all input sections");
+        setError(error);
+        // setError("Please fill in all input sections");
       });
   };
 
