@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 //Screens
 import HomeScreen from "./screens/HomeScreen";
@@ -28,6 +29,9 @@ function App() {
 
   return (
     <Router>
+      <Helmet>
+        <title>Word Collections</title>
+      </Helmet>
       <NavBar />
 
       <main>
