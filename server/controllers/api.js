@@ -62,7 +62,6 @@ poemsRouter.post("/:id", (request, response, next) => {
   const body = request.body;
 
   if (!body.title || !body.author || !body.text) {
-    console.log("HITTTT !!");
     return response.status(400).json({
       error: "content missing",
     });

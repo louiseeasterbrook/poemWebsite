@@ -40,7 +40,7 @@ const UpdateScreen = ({ setPoems, poemData }) => {
 
     //UPDATE POEM VOTES
     axios
-      .post(`http://localhost:3001/api/poems/${id}`, updatedPoem)
+      .post(`/api/poems/${id}`, updatedPoem)
       .then((response) => {
         //replaces old poem with updated poem in poem array
         let newPoemsList = poemData.map((el) => (el.id === id ? hello : el));
@@ -52,8 +52,7 @@ const UpdateScreen = ({ setPoems, poemData }) => {
         history.push(`/poem/${poem.id}`);
       })
       .catch((error) => {
-        setError(error);
-        // setError("Please fill in all input sections");
+        setError("Please fill in all input sections");
       });
   };
 
