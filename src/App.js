@@ -17,11 +17,12 @@ import NavBar from "./components/NavBar";
 
 function App() {
   const [poems, setPoems] = useState([]);
-
+  const [show, setShow] = useState(false);
   //GET DATA FROM SERVER
   useEffect(() => {
     axios.get("/api/poems").then((response) => {
       setPoems(response.data);
+      setShow(true);
     });
   }, []);
 
@@ -32,7 +33,7 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/">
-            <HomeScreen poemData={poems} />
+            <HomeScreen poemData={poems} show={show} />
           </Route>
           <Route exact path="/poem/:id">
             <PoemScreen setPoems={setPoems} poems={poems} />

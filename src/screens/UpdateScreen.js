@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 //components
 import Notification from "../components/Notification";
 import UpdateForm from "../components/UpdateForm";
+import Loading from "../components/Loading";
 
 const UpdateScreen = ({ setPoems, poemData }) => {
   const [error, setError] = useState("");
@@ -65,9 +66,7 @@ const UpdateScreen = ({ setPoems, poemData }) => {
   if (!show) {
     return (
       <div className="load-screen">
-        <div className="load-object"></div>
-        <div className="load-object"></div>
-        <div className="load-object"></div>
+        <Loading />
       </div>
     );
   } else {

@@ -11,13 +11,15 @@ import { useHistory } from "react-router-dom";
 //components
 import Notification from "../components/Notification";
 import Votes from "../components/Votes";
+import Loading from "../components/Loading";
 
 const PoemScreen = ({ poems, setPoems }) => {
-  let { id } = useParams();
   const [poem, setPoem] = useState([]);
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
+  let { id } = useParams();
   let updatedPoem = {};
   let newNum = 0;
-  const [error, setError] = useState("");
   let history = useHistory();
 
   // GET DATA FROM SERVER
@@ -26,6 +28,7 @@ const PoemScreen = ({ poems, setPoems }) => {
       .get(`/api/poems/${id}`)
       .then((response) => {
         setPoem(response.data);
+        setShow(true);
       })
       .catch((error) => {
         setError("Poem not Found");
@@ -49,11 +52,10 @@ const PoemScreen = ({ poems, setPoems }) => {
   };
 
   const deletePoem = () => {
-    console.log("delete");
     axios.delete(`http://localhost:3001/api/poems/${id}`).then((response) => {
       //removes poem from poem array
       let newPoems = poems.filter((el) => el.id !== id);
-      console.log(newPoems);
+
       //updates poems list in app.js
       setPoems(newPoems);
       //navigate back to home screen
@@ -61,8 +63,15 @@ const PoemScreen = ({ poems, setPoems }) => {
     });
   };
 
-  //render error if error has occured
-  if (Boolean(error)) {
+  //conditional rendering
+  if (!show) {
+    return (
+      <div className="load-screen">
+        <Loading />
+      </div>
+    );
+  } else if (Boolean(error)) {
+    //render error if error has occured
     return (
       <div className="poemScreen">
         <div className="poemScreenContent">

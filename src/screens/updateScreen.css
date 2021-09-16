@@ -24,7 +24,7 @@
   position: relative;
 }
 
-.load-object {
+/* .load-object {
   position: absolute;
   background-color: #9ad1d4;
   width: 30px;
@@ -69,7 +69,7 @@
     width: 20px;
     height: 20px;
   }
-}
+} */
 
 @media (max-width: 900px) {
   .addScreen {
