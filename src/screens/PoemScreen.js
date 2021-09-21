@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
 
 //components
 import Notification from "../components/Notification";
@@ -17,6 +18,7 @@ const PoemScreen = ({ poems, setPoems }) => {
   const [poem, setPoem] = useState([]);
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
+  const [delConfirm, setDelConfirm] = useState(false);
   let { id } = useParams();
   let updatedPoem = {};
   let newNum = 0;
@@ -89,17 +91,48 @@ const PoemScreen = ({ poems, setPoems }) => {
             <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
             <p className="authorName">{poem.author}</p>
           </div>
-
           <div className="poembtn-holder">
             <Votes votes={poem.votes} voteAdd={updateVotes} />
 
             <Link to={`/update/${id}`} yes={poem.author}>
               <button className="updatebtn btn">Update</button>
             </Link>
-            <button onClick={deletePoem} className="deletebtn btn">
+            <button
+              onClick={() => setDelConfirm(true)}
+              className="deletebtn btn"
+            >
               Delete
             </button>
           </div>
+
+          <Modal
+            isOpen={delConfirm}
+            onRequestClose={() => setDelConfirm(false)}
+            style={{
+              overlay: {
+                backgroundColor: "rgba(235, 235, 235, 0.7)",
+              },
+              content: {
+                opacity: 1,
+                width: "40%",
+                margin: "auto",
+                marginTop: "5rem",
+                height: "fit-content",
+              },
+            }}
+          >
+            <div className="popup">
+              <h4>Are you sure you want to permanently delete this poem?</h4>
+              <div className="popup-btns">
+                <button className="btn" onClick={deletePoem}>
+                  Yes
+                </button>
+                <button className="btn" onClick={() => setDelConfirm(false)}>
+                  No
+                </button>
+              </div>
+            </div>
+          </Modal>
 
           <div className="poemHolder">
             <ReactMarkdown className="poemScreenText" children={poem.text} />
