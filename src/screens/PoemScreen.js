@@ -24,6 +24,9 @@ const PoemScreen = ({ poems, setPoems }) => {
   let newNum = 0;
   let history = useHistory();
 
+  //set Modal to attach to document root
+  Modal.setAppElement("#root");
+
   // GET DATA FROM SERVER
   useEffect(() => {
     axios
@@ -114,7 +117,9 @@ const PoemScreen = ({ poems, setPoems }) => {
               },
               content: {
                 opacity: 1,
-                width: "40%",
+                width: "fit-content",
+                display: "table",
+                maxWidth: "60%",
                 margin: "auto",
                 marginTop: "5rem",
                 height: "fit-content",
