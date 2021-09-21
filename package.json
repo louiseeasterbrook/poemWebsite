@@ -56,7 +56,5 @@
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
-  "scripts": {
-    "postinstall": "ng build"
-  }
+  "proxy": "http://localhost:3001"
 }
