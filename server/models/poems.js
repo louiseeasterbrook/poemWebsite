@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const config = require("../utils/config");
+const { requestLogger } = require("../utils/middleware");
 
-const url = config.MONGODB_URI;
+const url = `mongodb+srv://${config.USERNAME}:${config.PASSWORD}@poems.ft4ii.mongodb.net/poems?retryWrites=true&w=majority`;
 
 console.log("connecting to", url);
 
