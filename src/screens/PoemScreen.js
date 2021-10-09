@@ -57,7 +57,7 @@ const PoemScreen = ({ poems, setPoems }) => {
   };
 
   const deletePoem = () => {
-    axios.delete(`http://localhost:3001/api/poems/${id}`).then((response) => {
+    axios.delete(`/api/poems/${id}`).then((response) => {
       //removes poem from poem array
       let newPoems = poems.filter((el) => el.id !== id);
 
