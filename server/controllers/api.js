@@ -25,8 +25,7 @@ poemsRouter.get("/:id", (request, response) => {
 //DELETE
 poemsRouter.delete("/:id", (request, response) => {
   Poem.findByIdAndRemove(request.params.id)
-    .then((poem) => {
-      console.log(poem);
+    .then(() => {
       response.status(204).end();
     })
     .catch((error) => response.status(404).json({ error: "Not found" }));
