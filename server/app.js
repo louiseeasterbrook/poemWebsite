@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 const poemsRouter = require("./controllers/api");
 const middleware = require("./utils/middleware.js");
-const logger = require("./utils/logger");
 const mongoose = require("mongoose");
 
 app.use(cors());

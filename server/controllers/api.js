@@ -10,7 +10,7 @@ poemsRouter.get("/", (request, response) => {
 });
 
 //GET POEM
-poemsRouter.get("/:id", (request, response, next) => {
+poemsRouter.get("/:id", (request, response) => {
   Poem.findById(request.params.id)
     .then((poem) => {
       if (poem) {
@@ -19,20 +19,21 @@ poemsRouter.get("/:id", (request, response, next) => {
         response.status(404).end();
       }
     })
-    .catch((error) => next(error));
+    .catch((error) => response.status(404).json({ error: "Not found" }));
 });
 
 //DELETE
-poemsRouter.delete("/:id", (request, response, next) => {
+poemsRouter.delete("/:id", (request, response) => {
   Poem.findByIdAndRemove(request.params.id)
-    .then(() => {
+    .then((poem) => {
+      console.log(poem);
       response.status(204).end();
     })
-    .catch((error) => next(error));
+    .catch((error) => response.status(404).json({ error: "Not found" }));
 });
 
 //ADD A POEM
-poemsRouter.post("/", (request, response, next) => {
+poemsRouter.post("/", (request, response) => {
   const body = request.body;
 
   if (!body.title || !body.author || !body.text) {
@@ -42,7 +43,6 @@ poemsRouter.post("/", (request, response, next) => {
   }
 
   const poem = new Poem({
-    // id: crypto.randomBytes(16).toString("hex"),
     title: body.title,
     author: body.author,
     text: body.text,
@@ -58,7 +58,7 @@ poemsRouter.post("/", (request, response, next) => {
 });
 
 //update votes
-poemsRouter.post("/:id", (request, response, next) => {
+poemsRouter.post("/:id", (request, response) => {
   const body = request.body;
 
   if (!body.title || !body.author || !body.text) {
@@ -78,7 +78,7 @@ poemsRouter.post("/:id", (request, response, next) => {
     .then(() => {
       response.status(204).end();
     })
-    .catch((error) => next(error));
+    .catch((error) => response.status(400).json({ error: { error } }));
 });
 
 module.exports = poemsRouter;
