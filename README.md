@@ -2,7 +2,7 @@
 
 ### Website Front End
 
-The front end web application will be written using React and supports the following functionality.
+The front end web application is React and supports the following functionality.
 
 The front page displays a list of poem previews showing the first few lines of each poem. The poems displayed are those that are most highly rated (most votes).
 
