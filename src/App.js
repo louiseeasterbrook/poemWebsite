@@ -13,6 +13,7 @@ import ResultScreen from "./screens/ResultScreen";
 //components
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   //stores the list of poemss
@@ -41,6 +42,7 @@ function App() {
       />
 
       <main>
+        <ScrollToTop />
         <Switch>
           <Route exact path="/">
             <HomeScreen poemData={poems} showData={showData} />
