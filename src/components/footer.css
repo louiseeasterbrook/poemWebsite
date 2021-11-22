@@ -1,8 +1,7 @@
 .footer-outer {
-  background-color: rgb(53, 53, 53);
   width: 100%;
-  height: 15vh;
-  min-height: 100px;
+  height: 20vh;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +11,8 @@
 
 .footer-outer p {
   text-align: center;
-  color: rgb(139, 139, 139);
+  margin: 1rem;
+  font-size: 12px;
 }
 
 .social-holder {
@@ -20,14 +20,23 @@
 }
 
 .icon {
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 20px;
   margin: 0 0.8rem;
   cursor: pointer;
 }
 
-.icon:hover {
-  color: rgb(146, 146, 146);
+.footer-links-holder {
+  display: flex;
+  gap: 2rem;
+}
 
-  transition: 0.2s;
+.footer-links-holder > a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: white;
+  transition: 0.3s;
 }

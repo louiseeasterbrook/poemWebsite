@@ -1,17 +1,16 @@
 import "./footer.css";
 
+//font awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookSquare,
-  faTwitter,
+  faInstagram,
+  faTwitterSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faTwitterSquare } from "@fortawesome/free-brands-svg-icons";
 
 const NavBar = () => {
   return (
     <div className="footer-outer">
-      <p>Word Collections 2021</p>
       <div className="social-holder">
         <FontAwesomeIcon
           icon={faFacebookSquare}
@@ -28,6 +27,11 @@ const NavBar = () => {
           className="twitter-icon icon"
           onClick={() => window.open("https://twitter.com", "_blank")}
         />
+      </div>
+      <div className="footer-links-holder">
+        <a>Privacy </a>
+        <a>Terms of use </a>
+        <a>Advertising</a>
       </div>
     </div>
   );
