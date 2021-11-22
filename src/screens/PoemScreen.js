@@ -40,7 +40,7 @@ const PoemScreen = ({ poems, setPoems }) => {
       .catch((error) => {
         setError("Poem not Found");
       });
-  }, []);
+  }, [id]);
 
   const updateVotes = () => {
     newNum = Number(poem.votes) + 1;
