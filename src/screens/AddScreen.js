@@ -12,8 +12,7 @@ const AddScreen = ({ setPoems, poemData }) => {
   let errorShow = false;
   let history = useHistory();
 
-  //ADD FUNCTION
-
+  //poem post function (triggered on form submit)
   const addPoem = (newPoem) => {
     //setting header token value
     const config = { headers: { bob: "Bobalooba" } };
@@ -30,7 +29,7 @@ const AddScreen = ({ setPoems, poemData }) => {
         history.push(`/poem/${response.data.id}`);
       })
       .catch((error) => {
-        setError("Please fill in all input sections");
+        setError("Error submitting poem");
       });
   };
 
