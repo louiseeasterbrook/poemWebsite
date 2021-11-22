@@ -30,8 +30,9 @@ const UpdateScreen = ({ setPoems, poemData }) => {
       });
   }, []);
 
+  //function to update poem - triggered on form submission
   const updatePoem = (updatedPoem) => {
-    const hello = {
+    const updatedVersion = {
       id: poem.id,
       title: updatedPoem.title,
       author: updatedPoem.author,
@@ -39,12 +40,14 @@ const UpdateScreen = ({ setPoems, poemData }) => {
       votes: poem.votes,
     };
 
-    //UPDATE POEM VOTES
+    //UPDATE poem in database
     axios
       .post(`/api/poems/${id}`, updatedPoem)
       .then((response) => {
         //replaces old poem with updated poem in poem array
-        let newPoemsList = poemData.map((el) => (el.id === id ? hello : el));
+        let newPoemsList = poemData.map((el) =>
+          el.id === id ? updatedVersion : el
+        );
 
         //updates poems list in app.js
         setPoems(newPoemsList);
