@@ -28,7 +28,7 @@ const UpdateScreen = ({ setPoems, poemData }) => {
       .catch((error) => {
         setError("Poem not Found");
       });
-  }, []);
+  }, [id]);
 
   //function to update poem - triggered on form submission
   const updatePoem = (updatedPoem) => {
