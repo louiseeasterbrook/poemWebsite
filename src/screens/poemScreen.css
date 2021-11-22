@@ -6,7 +6,7 @@
 }
 
 .poemScreenContent {
-  padding-top: 100px;
+  padding-top: 3rem;
 }
 
 .showTitle {
@@ -42,18 +42,19 @@
 .btn {
   cursor: pointer;
   border: none;
-  background-color: rgb(219, 219, 219);
+  background-color: #577590;
   width: fit-content;
   padding: 3px 8px;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 25px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: white;
 }
 
 .btn:hover {
   transition: 0.3s;
-  background-color: #9ad1d4;
+  background-color: #486177;
 }
 
 .poembtn-holder::after {
