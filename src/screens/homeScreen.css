@@ -1,33 +1,88 @@
 .homeScreen {
   width: 100%;
   position: relative;
-  margin-bottom: 3rem;
-}
-
-.mainSection {
-  width: 80%;
-  max-width: 950px;
-  margin: auto;
-  margin-bottom: 6rem;
 }
 
 .poemContainer {
-  margin: 1.5rem 0;
+  margin: auto;
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  max-width: 1000px;
 }
 
-@media (max-width: 1100px) {
+.open-header {
+  height: 50vh;
+  min-height: 400px;
+  width: 100%;
+  background: linear-gradient(to left, rgb(152, 219, 219), rgb(122, 197, 197));
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
 }
 
-@media (max-width: 900px) {
-  .mainSection {
-    width: 90%;
+.open-blurb {
+  width: 20rem;
+}
+
+.open-blurb > h2 {
+  font-size: 2.5rem;
+}
+
+.open-blurb > p {
+  margin: 1rem 0;
+}
+
+.open-blurb > button {
+  background-color: #577590;
+  outline: none;
+  border: none;
+  padding: 1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+}
+
+.open-blurb > button:hover {
+  transition: 0.3s;
+  background-color: #486177;
+}
+
+.open-img {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.img-holder {
+  width: 15rem;
+  height: 15rem;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+@media (max-width: 820px) {
+  .open-header {
+    flex-direction: column-reverse;
+    gap: 1rem;
   }
-}
 
-@media (max-width: 720px) {
+  .img-holder {
+    width: 5rem;
+    height: 6rem;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .open-blurb {
+    width: 90%;
+    text-align: center;
+  }
+
   .poemContainer {
     grid-template-columns: 1fr;
   }
