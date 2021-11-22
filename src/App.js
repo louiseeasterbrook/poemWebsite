@@ -2,42 +2,48 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Helmet } from "react-helmet";
 
 //Screens
 import HomeScreen from "./screens/HomeScreen";
 import PoemScreen from "./screens/PoemScreen";
 import AddScreen from "./screens/AddScreen";
 import UpdateScreen from "./screens/UpdateScreen";
-
-//components
-import Footer from "./components/Footer";
+import ResultScreen from "./screens/ResultScreen";
 
 //components
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 function App() {
+  //stores the list of poemss
   const [poems, setPoems] = useState([]);
-  const [show, setShow] = useState(false);
+  // indicates if data has been fetched from the database
+  const [showData, setShowData] = useState(false);
+  //stores the searched input value
+  const [searchVal, setSearchVal] = useState("");
+  //if true this variable triggers the search function - used by ResultScreen and NavBar
+  const [searchPress, setSearchPress] = useState(false);
+
   //GET DATA FROM SERVER
   useEffect(() => {
     axios.get("/api/poems").then((response) => {
       setPoems(response.data);
-      setShow(true);
+      setShowData(true);
     });
   }, []);
 
   return (
     <Router>
-      <Helmet>
-        <title>Word Collections</title>
-      </Helmet>
-      <NavBar />
+      <NavBar
+        setSearchVal={setSearchVal}
+        searchVal={searchVal}
+        setSearchPress={setSearchPress}
+      />
 
       <main>
         <Switch>
           <Route exact path="/">
-            <HomeScreen poemData={poems} show={show} />
+            <HomeScreen poemData={poems} showData={showData} />
           </Route>
           <Route exact path="/poem/:id">
             <PoemScreen setPoems={setPoems} poems={poems} />
@@ -47,6 +53,15 @@ function App() {
           </Route>
           <Route exact path="/update/:id">
             <UpdateScreen setPoems={setPoems} poemData={poems} />
+          </Route>
+          <Route exact path="/searchresults">
+            <ResultScreen
+              poemData={poems}
+              searchVal={searchVal}
+              setSearchVal={setSearchVal}
+              searchPress={searchPress}
+              setSearchPress={setSearchPress}
+            />
           </Route>
         </Switch>
       </main>
