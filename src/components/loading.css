@@ -1,47 +1,26 @@
 .load-object {
   position: absolute;
-  background-color: #9ad1d4;
-  width: 0px;
-  height: 0px;
+  border: rgb(192, 192, 192) 5px solid;
+  border-top: #577590 5px solid;
+  width: 2rem;
+  height: 2rem;
   border-radius: 100px;
-  animation: loading 0.7s infinite;
-}
-
-.load-container :nth-child(1) {
   left: 50%;
   bottom: 20%;
   transform: translate(-50%, -20%);
-  animation-delay: 0.2s;
-}
-.load-container :nth-child(2) {
-  left: 45%;
-  bottom: 20%;
-  transform: translate(-50%, -20%);
-  animation-delay: 0.4s;
-}
-.load-container :nth-child(3) {
-  left: 55%;
-  bottom: 20%;
-  transform: translate(-50%, -20%);
-  animation-delay: 0.6s;
+  animation: spin 0.7s infinite linear;
 }
 
-@keyframes loading {
+.load-container {
+  background-color: beige;
+}
+
+@keyframes spin {
   0% {
-    width: 15px;
-    height: 15px;
+    transform: rotate(0deg);
   }
 
-  70% {
-    width: 5px;
-    height: 5px;
-  }
-  95% {
-    width: 18px;
-    height: 18px;
-  }
   100% {
-    width: 15px;
-    height: 15px;
+    transform: rotate(360deg);
   }
 }
