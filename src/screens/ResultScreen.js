@@ -18,11 +18,6 @@ const ResultScreen = ({
   const [previewSearchVal, setPreviewSearchVal] = useState("");
   const [finalResults, setFinalResults] = useState([]);
 
-  //sort poems in decending order based on no. votes
-  let sortedPoems = poemData.sort((a, b) => {
-    return b.votes - a.votes;
-  });
-
   useEffect(() => {
     if (searchPress) {
       filterData();
