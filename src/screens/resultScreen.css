@@ -1,0 +1,19 @@
+.result-message {
+  margin: auto;
+  width: 90%;
+  max-width: 1000px;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.no-results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.icon-sad {
+  font-size: 1.7rem;
+  margin: 1rem;
+}
