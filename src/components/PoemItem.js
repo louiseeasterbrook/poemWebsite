@@ -1,8 +1,9 @@
 import "./poemItem.css";
 import { Link } from "react-router-dom";
+
+//font awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 const PoemItem = (props) => {
   var firstLine = "";
@@ -37,7 +38,7 @@ const PoemItem = (props) => {
     <div onClick={props.toPoem} className="poemItemContainer">
       <Link className="Linked" to={`/poem/${props.poemId}`}>
         <div className="poemContent">
-          <h1>{props.poemTitle}</h1>
+          <h3>{props.poemTitle}</h3>
           <p>{firstLine}</p>
           <p>{secondLine}</p>
           <p>{thirdLine}</p>
