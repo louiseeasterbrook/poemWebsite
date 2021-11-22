@@ -14,11 +14,6 @@ const theme = createTheme({
 
 //function triggered on form submit
 const UpdateForm = ({ updatePoem, setError, title, text, author }) => {
-  const createPoem = (poem) => {
-    updatePoem(poem);
-    setError("");
-  };
-
   const validationSchema = Yup.object({
     title: Yup.string().required("Title Required").max(40),
     author: Yup.string().required("Author Required"),
@@ -31,8 +26,8 @@ const UpdateForm = ({ updatePoem, setError, title, text, author }) => {
         <Formik
           initialValues={{ title: title, author: author, text: text }}
           onSubmit={(data) => {
-            console.log(data);
             updatePoem(data);
+            setError("");
           }}
           validationSchema={validationSchema}
         >
