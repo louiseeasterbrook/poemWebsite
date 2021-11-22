@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 const PoemItem = (props) => {
-  var firstLine = "";
-  var secondLine = "";
-  var thirdLine = "";
+  let firstLine = "";
+  let secondLine = "";
+  let thirdLine = "";
 
   //sets the value of first 3 lines
   const getLines = () => {
@@ -26,10 +26,7 @@ const PoemItem = (props) => {
   //checks length of preview string
   //shortens preview string if too long
   const lengthCheck = (text) => {
-    var final = "";
-    return text.length > 35
-      ? (final = text.substring(0, 40) + "...")
-      : (final = text);
+    return text.length > 35 ? text.substring(0, 40) + "..." : text;
   };
 
   getLines();
