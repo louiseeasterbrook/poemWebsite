@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
+
+//for awesome imports
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 //components
 import Notification from "../components/Notification";
@@ -68,7 +70,7 @@ const PoemScreen = ({ poems, setPoems }) => {
     });
   };
 
-  //conditional rendering
+  //conditional rendering - checks if poem has loaded
   if (!show) {
     return (
       <div className="load-screen">
