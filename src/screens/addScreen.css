@@ -10,7 +10,7 @@
 }
 
 .formTitle {
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 0.5rem;
 }
 
@@ -52,10 +52,6 @@
   position: absolute;
   top: 30px;
   left: -50px;
-}
-
-.form {
-  margin-top: 2rem;
 }
 
 @media (max-width: 900px) {
