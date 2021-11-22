@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(219, 219, 219);
+  background-color: #577590;
   width: fit-content;
   padding: 0 7px;
   border-radius: 10px;
@@ -12,6 +12,7 @@
 .votesContainer p {
   text-align: center;
   margin-right: 5px;
+  color: white;
 }
 
 .votesContainer button {
@@ -22,8 +23,8 @@
   border-radius: 4rem;
   width: 1.2rem;
   cursor: pointer;
-  background-color: rgb(230, 230, 230);
   position: relative;
+  background-color: #577590;
 }
 
 .votesContainer button:hover {
@@ -31,18 +32,23 @@
   background-color: #eeeeee;
 }
 
+.votesContainer button:hover > .up-icon {
+  color: black;
+}
+
 .votesContainer button:hover::after {
   content: "Upvote";
   position: absolute;
   top: 30px;
   left: -15px;
-  background-color: rgba(154, 209, 212, 0.7);
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 3px;
   color: black;
   letter-spacing: 2px;
   text-transform: uppercase;
-  
-  
+}
+
+.up-icon {
+  color: white;
 }
