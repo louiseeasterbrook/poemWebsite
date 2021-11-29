@@ -31,6 +31,16 @@ poemsRouter.delete("/:id", (request, response) => {
     .catch((error) => response.status(404).json({ error: "Not found" }));
 });
 
+//function to retrieve token value
+const getTokenFrom = (request) => {
+  const authorization = request.get("bob");
+  //check of header is there & check if equals desired value
+  if (authorization && authorization === "Bobalooba") {
+    return true;
+  }
+  return false;
+};
+
 //ADD A POEM
 poemsRouter.post("/", (request, response) => {
   const body = request.body;
@@ -38,6 +48,13 @@ poemsRouter.post("/", (request, response) => {
   if (!body.title || !body.author || !body.text) {
     return response.status(400).json({
       error: "content missing",
+    });
+  }
+
+  //send error  if authroisation token does not match
+  if (!getTokenFrom(request)) {
+    return response.status(401).json({
+      error: "not authorised to make a post",
     });
   }
 
