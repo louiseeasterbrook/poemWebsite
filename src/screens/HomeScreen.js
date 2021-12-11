@@ -1,58 +1,63 @@
 import "./homeScreen.css";
-import image from "../img/feather.png";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import axios from "axios";
+
 //components
 import PoemItem from "../components/PoemItem";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
+import Notification from "../components/Notification";
 
-const HomeScreen = ({ poemData, showData }) => {
-  let history = useHistory();
+const HomeScreen = ({
+  setShowData,
+  showData,
+  setOpenModal,
+  allPoems,
+  setAllPoems,
+  setDataError,
+  dataError,
+  isAuthenticated,
+}) => {
+  //GET DATA FROM SERVER
+  useEffect(() => {
+    axios
+      .get("/api/poems")
+      .then((response) => {
+        setAllPoems(response.data);
+        //stop loading
+        setShowData(true);
+      })
+      .catch((error) => {
+        //stop loading
+        setShowData(true);
+        setDataError("Error loading Poems, please reload the page");
+      });
+  }, [setAllPoems, setDataError, setShowData]);
+
   //sort poems in decending order based on no. votes
-  let sortedPoems = poemData.sort((a, b) => {
+  let sortedPoems = allPoems.sort((a, b) => {
     return b.votes - a.votes;
   });
 
   //conditional rendering
-  if (!showData) {
-    return (
-      <div className="load-screen">
-        <Loading />
-      </div>
-    );
-  } else {
-    return (
+  return (
+    <>
+      <Header setOpenModal={setOpenModal} isAuthenticated={isAuthenticated} />
       <div className="homeScreen">
-        <div className="open-header">
-          <div className="open-blurb">
-            <h2>Express yourself with words</h2>
-            <p>Browse and submit your own poems</p>
-            <button onClick={() => history.push("/add")}>
-              Submit your first Poem
-            </button>
-          </div>
-          <div className="img-holder">
-            <img
-              src={image}
-              alt="girl on computer - clipart"
-              className="open-img"
-            />
-          </div>
-        </div>
         <div className="poemContainer">
-          {sortedPoems.map((el, i) => (
-            <PoemItem
-              key={i}
-              author={el.author}
-              poemTitle={el.title}
-              poemText={el.text}
-              poemId={el.id}
-              votes={el.votes}
-            />
-          ))}
+          {!showData ? (
+            <Loading />
+          ) : dataError ? (
+            <Notification message={dataError} />
+          ) : (
+            sortedPoems.map((el, i) => (
+              <PoemItem key={i} poem={el} profile={false} />
+            ))
+          )}
         </div>
       </div>
-    );
-  }
+    </>
+  );
 };
 
 export default HomeScreen;
