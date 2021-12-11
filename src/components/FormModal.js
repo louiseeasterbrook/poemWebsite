@@ -32,6 +32,8 @@ const FormModal = ({ setAllPoems, allPoems, open, setOpenModal, user }) => {
 
         //navigate to new poem display
         history.push(`/poem/${response.data.id}`);
+        //close modal
+        setOpenModal(false);
       })
       .catch((error) => {
         setError("Please fill in all inputs");
