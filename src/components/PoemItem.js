@@ -3,52 +3,101 @@ import { Link } from "react-router-dom";
 
 //font awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle, faTrophy } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisH, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
-const PoemItem = (props) => {
+const PoemItem = ({
+  poem,
+  profile,
+  setOpenDelModal,
+  setOpenEditModal,
+  setSelectedPoem,
+}) => {
   let firstLine = "";
   let secondLine = "";
   let thirdLine = "";
 
+  //format the time
+  let time = new Date(poem.posted);
+  let writtenDate = time.toUTCString().slice(4, -7);
+
   //sets the value of first 3 lines
   const getLines = () => {
-    if (props.poemText.split("\n")[0]) {
-      firstLine = lengthCheck(props.poemText.split("\n")[0]);
+    if (poem.text.split("\n")[0]) {
+      firstLine = lengthCheck(poem.text.split("\n")[0]);
     }
-    if (props.poemText.split("\n")[1]) {
-      secondLine = lengthCheck(props.poemText.split("\n")[1]);
+    if (poem.text.split("\n")[1]) {
+      secondLine = lengthCheck(poem.text.split("\n")[1]);
     }
-    if (props.poemText.split("\n")[2]) {
-      thirdLine = lengthCheck(props.poemText.split("\n")[2]);
+    if (poem.text.split("\n")[2]) {
+      thirdLine = lengthCheck(poem.text.split("\n")[2]);
     }
   };
 
   //checks length of preview string
   //shortens preview string if too long
   const lengthCheck = (text) => {
-    return text.length > 35 ? text.substring(0, 40) + "..." : text;
+    return text.length > 65 ? text.substring(0, 65) + "..." : text;
   };
 
   getLines();
 
+  const deletePress = (event) => {
+    //stop link being triggered
+    event.preventDefault();
+    event.stopPropagation();
+
+    //open modal
+    setOpenDelModal(true);
+    setSelectedPoem(poem);
+  };
+
+  const editPress = (event) => {
+    //stop link being triggered
+    event.preventDefault();
+    event.stopPropagation();
+
+    //open modal
+    setOpenEditModal(true);
+
+    setSelectedPoem(poem);
+  };
+
   return (
-    <div onClick={props.toPoem} className="poemItemContainer">
-      <Link className="Linked" to={`/poem/${props.poemId}`}>
-        <div className="poemContent">
-          <h3>{props.poemTitle}</h3>
-          <p>{firstLine}</p>
-          <p>{secondLine}</p>
-          <p>{thirdLine}</p>
+    <div className="poemItem-container">
+      <Link className="linked" to={`/poem/${poem.id}`}>
+        <div className="poem-image-holder">
+          <img
+            src={`./uploads/${poem.articleImage}`}
+            className="poem-img"
+            alt="poem"
+          />
         </div>
 
-        <div className="bottomSection">
-          <div className="authorSection">
-            <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
-            <p className="authorName">{props.author}</p>
+        <div className="poem-content">
+          {profile ? (
+            <div className="dropdown">
+              <FontAwesomeIcon icon={faEllipsisH} className="dropbtn" />
+              <div className="dropdown-content">
+                <p onClick={editPress}>Edit </p>
+                <p onClick={deletePress}>Delete</p>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+          <div className="poemItem-top">
+            <h2>{poem.title}</h2>
+
+            <p>{firstLine}</p>
+            <p>{secondLine}</p>
+            <p>{thirdLine}</p>
           </div>
-          <div className="votesSection">
-            <p>{props.votes}</p>
-            <FontAwesomeIcon icon={faTrophy} className="trophyIcon" />
+          <div className="poemItem-bottom">
+            <div className="author-section">
+              <FontAwesomeIcon icon={faUserCircle} className="user-icon" />
+              <p className="authorName">{poem.author}</p>
+            </div>
+            <p className="poemItem-time">{writtenDate}</p>
           </div>
         </div>
       </Link>
