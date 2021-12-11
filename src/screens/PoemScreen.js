@@ -13,6 +13,9 @@ import Notification from "../components/Notification";
 import Votes from "../components/Votes";
 import Loading from "../components/Loading";
 
+//image
+import image from "../img/download.jpg";
+
 const PoemScreen = ({ poems, setPoems }) => {
   //holds fetched poem
   const [poem, setPoem] = useState([]);
@@ -75,7 +78,7 @@ const PoemScreen = ({ poems, setPoems }) => {
         <div className="poemDis-inner">
           <div className="poemDis-top-section">
             <div className="poemDis-img-holder">
-              <img src={`/uploads/${poem.articleImage}`} alt="poem" />
+              <img src={image} alt="poem" />
             </div>
             <div className="poemDis-header">
               <h2 className="showTitle">{poem.title}</h2>

@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
+//image
+import image from "../img/download.jpg";
+
 const PoemItem = ({
   poem,
   profile,
@@ -67,7 +70,8 @@ const PoemItem = ({
       <Link className="linked" to={`/poem/${poem.id}`}>
         <div className="poem-image-holder">
           <img
-            src={`./uploads/${poem.articleImage}`}
+            // src={`./uploads/${poem.articleImage}`}
+            src={image}
             className="poem-img"
             alt="poem"
           />
