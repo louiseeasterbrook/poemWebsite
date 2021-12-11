@@ -3,92 +3,137 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+//components
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+
 //font awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faBars,
-  faHome,
-  faTimes,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = ({ setSearchVal, setSearchPress, searchVal }) => {
+const NavBar = ({ isAuthenticated, user, setOpenModal }) => {
   let history = useHistory();
   const [sidebar, setSidebar] = useState(false);
+  const [secondNavbar, setSecondNavbar] = useState(false);
+
+  //check for scrolling to activate navbar
+  const scrollCheck = () => {
+    if (window.scrollY >= 70) {
+      setSecondNavbar(true);
+    } else {
+      setSecondNavbar(false);
+    }
+  };
+
+  //close sidebar if page excedes 650px
+  const pageWidthCheck = () => {
+    if (window.innerWidth > 650) {
+      setSidebar(false);
+    }
+  };
+
+  //trigger scrollCheck function on scroll
+  window.addEventListener("scroll", scrollCheck);
+  //trigger page width
+  window.addEventListener("resize", pageWidthCheck);
 
   //side bar toggle
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
 
-  //search bar submit function
-  const submitSearch = (e) => {
-    e.preventDefault();
-    //check if earch is blank
-    if (searchVal.trim() !== "") {
-      setSearchPress(true);
-      history.push("/searchResults");
-    }
-  };
-
-  //update search input value
-  const updateSearch = (e) => {
-    setSearchVal(e.target.value);
-  };
-
   return (
-    <div className="nav-container">
-      <div className="top-nav-bar">
-        <div className="top-nav-bar-inner">
-          <div className="title-container">
-            <FontAwesomeIcon
-              icon={sidebar ? faTimes : faBars}
-              className="menu-btn icon"
-              onClick={showSidebar}
-            />
+    <>
+      <div className={secondNavbar ? "nav-container active" : "nav-container"}>
+        <div className="nav-bar-inner">
+          <Link to="/" className="page-title">
+            <h2>Word Collections</h2>
+          </Link>
 
-            <Link to="/">
-              <h1 className="long-title">Word Collections</h1>
-              <h1 className="mobile-title">WC</h1>
-            </Link>
-          </div>
-
-          <div className="search-container">
-            <form onSubmit={submitSearch}>
-              <input
-                placeholder="Search.."
-                onChange={updateSearch}
-                value={searchVal}
-              />
-              <button>
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  className="search-icon"
-                  type="submit"
+          {isAuthenticated && user ? (
+            <nav className="top-nav">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+              <p className="nav-link " onClick={() => setOpenModal(true)}>
+                Add Poem
+              </p>
+              <div className="nav-profile">
+                <img
+                  className="nav-image"
+                  src={user.picture}
+                  alt="user"
+                  onClick={() => history.push("/profile")}
                 />
-              </button>
-            </form>
-          </div>
+              </div>
+              <LogoutButton />
+            </nav>
+          ) : (
+            <>
+              <nav className="top-nav">
+                <Link className="nav-link" to="/">
+                  Home
+                </Link>
+                <p className="nav-link add-poem-link">Add Poem</p>
+                <LoginButton />
+              </nav>
+            </>
+          )}
+          {sidebar ? (
+            <FontAwesomeIcon
+              icon={faTimes}
+              onClick={showSidebar}
+              className={
+                secondNavbar ? "sidebar-btn active-sb-btn" : "sidebar-btn"
+              }
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faBars}
+              onClick={showSidebar}
+              className={
+                secondNavbar ? "sidebar-btn active-sb-btn" : "sidebar-btn"
+              }
+            />
+          )}
         </div>
       </div>
-      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-list">
-          <Link to="/">
-            <li className="nav-item">
-              <FontAwesomeIcon icon={faHome} className="menu-icon" />
-              <h3>Home</h3>
-            </li>
-          </Link>
-          <Link to="/add">
-            <li className="nav-item">
-              <FontAwesomeIcon icon={faPlus} className="menu-icon" />
-              <h3>Add Poem</h3>
-            </li>
-          </Link>
-        </ul>
-      </nav>
-    </div>
+      <div
+        className={
+          sidebar ? "sidebar-container active-sidebar" : "sidebar-container"
+        }
+      >
+        {isAuthenticated && user ? (
+          <nav className="side-nav">
+            <div className="nav-profile">
+              <img
+                className="nav-image"
+                src={user.picture}
+                alt="user"
+                onClick={() => history.push("/profile")}
+              />
+            </div>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+            <p className="nav-link " onClick={() => setOpenModal(true)}>
+              Add Poem
+            </p>
+            <LogoutButton />
+          </nav>
+        ) : (
+          <>
+            <nav className="side-nav">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+              <p className="nav-link add-poem-link">Add Poem</p>
+              <LoginButton />
+            </nav>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 
