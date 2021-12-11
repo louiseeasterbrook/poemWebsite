@@ -86,7 +86,7 @@ const PoemForm = ({
           className="text-input"
         />
 
-        {update ? (
+        {/* {update ? (
           <></>
         ) : (
           <>
@@ -98,7 +98,7 @@ const PoemForm = ({
               className="img-btn"
             />
           </>
-        )}
+        )} */}
 
         <button className="submit-button" type="submit">
           {update ? "Update" : "Submit"}
