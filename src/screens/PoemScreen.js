@@ -3,9 +3,6 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import Modal from "react-modal";
 
 //for awesome imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,17 +14,20 @@ import Votes from "../components/Votes";
 import Loading from "../components/Loading";
 
 const PoemScreen = ({ poems, setPoems }) => {
+  //holds fetched poem
   const [poem, setPoem] = useState([]);
+  //variable to determine loading status
   const [show, setShow] = useState(false);
+  //holds error from axios call
   const [error, setError] = useState("");
-  const [delConfirm, setDelConfirm] = useState(false);
-  let { id } = useParams();
+  //holds display that has been formated to be readable
+  const [displayTime, setDisplayTime] = useState("");
+  //temporarily holds updated poem
   let updatedPoem = {};
+  //temporarily holds vote count
   let newNum = 0;
-  let history = useHistory();
 
-  //set Modal to attach to document root
-  Modal.setAppElement("#root");
+  let { id } = useParams();
 
   // GET DATA FROM SERVER
   useEffect(() => {
@@ -35,9 +35,15 @@ const PoemScreen = ({ poems, setPoems }) => {
       .get(`/api/poems/${id}`)
       .then((response) => {
         setPoem(response.data);
+        setDisplayTime(
+          new Date(response.data.posted).toUTCString().slice(4, -7)
+        );
+        //stop loading
         setShow(true);
       })
       .catch((error) => {
+        //stop loading
+        setShow(true);
         setError("Poem not Found");
       });
   }, [id]);
@@ -47,7 +53,7 @@ const PoemScreen = ({ poems, setPoems }) => {
     updatedPoem = { ...poem, votes: newNum };
 
     //UPDATE POEM VOTES
-    axios.post(`/api/poems/${id}`, updatedPoem).then((response) => {
+    axios.post(`/api/poems/${id}/votes`, updatedPoem).then((response) => {
       //updates poem in current page
       setPoem(updatedPoem);
 
@@ -58,96 +64,37 @@ const PoemScreen = ({ poems, setPoems }) => {
     });
   };
 
-  const deletePoem = () => {
-    axios.delete(`/api/poems/${id}`).then((response) => {
-      //removes poem from poem array
-      let newPoems = poems.filter((el) => el.id !== id);
-
-      //updates poems list in app.js
-      setPoems(newPoems);
-      //navigate back to home screen
-      history.push("/");
-    });
-  };
-
-  //conditional rendering - checks if poem has loaded
-  if (!show) {
-    return (
-      <div className="load-screen">
+  //if no error render poem screen
+  return (
+    <div className="poemDis-screen">
+      {!show ? (
         <Loading />
-      </div>
-    );
-  } else if (Boolean(error)) {
-    //render error if error has occured
-    return (
-      <div className="poemScreen">
-        <div className="poemScreenContent">
-          <Notification message={error} show={true} />
-        </div>
-      </div>
-    );
-  } else {
-    //if no error render poem screen
-    return (
-      <div className="poemScreen">
-        <div className="poemScreenContent">
-          <h2 className="showTitle">{poem.title}</h2>
-          <div className="authorDisplay">
-            <FontAwesomeIcon icon={faUserCircle} className="userIcon" />
-            <p className="authorName">{poem.author}</p>
-          </div>
-          <div className="poembtn-holder">
-            <Votes votes={poem.votes} voteAdd={updateVotes} />
-
-            <Link to={`/update/${id}`} yes={poem.author}>
-              <button className="updatebtn btn">Update</button>
-            </Link>
-            <button
-              onClick={() => setDelConfirm(true)}
-              className="deletebtn btn"
-            >
-              Delete
-            </button>
-          </div>
-
-          <Modal
-            isOpen={delConfirm}
-            onRequestClose={() => setDelConfirm(false)}
-            style={{
-              overlay: {
-                backgroundColor: "rgba(235, 235, 235, 0.7)",
-              },
-              content: {
-                opacity: 1,
-                width: "fit-content",
-                display: "table",
-                maxWidth: "60%",
-                margin: "auto",
-                marginTop: "5rem",
-                height: "fit-content",
-              },
-            }}
-          >
-            <div className="popup">
-              <h4>Are you sure you want to permanently delete this poem?</h4>
-              <div className="popup-btns">
-                <button className="btn" onClick={deletePoem}>
-                  Yes
-                </button>
-                <button className="btn" onClick={() => setDelConfirm(false)}>
-                  No
-                </button>
-              </div>
+      ) : error ? (
+        <Notification message={error} />
+      ) : (
+        <div className="poemDis-inner">
+          <div className="poemDis-top-section">
+            <div className="poemDis-img-holder">
+              <img src={`/uploads/${poem.articleImage}`} alt="poem" />
             </div>
-          </Modal>
+            <div className="poemDis-header">
+              <h2 className="showTitle">{poem.title}</h2>
+              <div className="authorDisplay">
+                <FontAwesomeIcon icon={faUserCircle} className="user-icon" />
+                <p className="authorName">{poem.author}</p>
+              </div>
+              <Votes votes={poem.votes} voteAdd={updateVotes} />
+            </div>
+          </div>
 
-          <div className="poemHolder">
-            <ReactMarkdown className="poemScreenText" children={poem.text} />
+          <div className="poemDis-text-holder">
+            <ReactMarkdown className="poemDis-text" children={poem.text} />
+            <p className="poemDis-time">Posted: {displayTime}</p>
           </div>
         </div>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 };
 
 export default PoemScreen;
