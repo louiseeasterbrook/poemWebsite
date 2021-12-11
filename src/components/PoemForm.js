@@ -1,118 +1,109 @@
 import "./poemForm.css";
-import { Formik, Form } from "formik";
-import { TextField, createTheme, ThemeProvider } from "@material-ui/core";
-import * as Yup from "yup";
+import React, { useState, useEffect } from "react";
 
-//modifed theme for input 'TextField'
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#000000",
-    },
-  },
-});
+const PoemForm = ({
+  setError,
+  user,
+  title,
+  text,
+  filename,
+  update,
+  axiosFormFunc,
+}) => {
+  const [poem, setPoem] = useState({
+    title: title,
+    text: text,
+    author: user.name,
+    fileName: filename,
+  });
 
-const PoemForm = ({ addPoem, setError }) => {
-  const createPoem = (poem) => {
-    addPoem(poem);
-    //remove error message
+  useEffect(() => {
+    //onload set error to nothing
+    setError("");
+  }, [setError]);
+
+  //function triggered by form submit
+  const createPoem = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const formData = new FormData();
+
+    if (update) {
+      formData.append("id", poem.id);
+    }
+    formData.append("title", poem.title);
+    formData.append("author", poem.author);
+    formData.append("text", poem.text);
+    formData.append("articleImage", poem.fileName);
+    formData.append("posted", new Date());
+    formData.append("userId", user.sub);
+
+    //send poem back to modal to up updated or posted
+    axiosFormFunc(formData);
+    // //remove error message
     setError("");
   };
 
-  const validationSchema = Yup.object({
-    title: Yup.string().required("Title Required").max(40),
-    author: Yup.string().required("Author Required"),
-    text: Yup.string().required("Text Required"),
-  });
+  const poemUpdate = (event) => {
+    setPoem({ ...poem, [event.target.name]: event.target.value });
+  };
+
+  const onChangeFile = (e) => {
+    setPoem({ ...poem, fileName: e.target.files[0] });
+  };
 
   return (
     <div className="poemFormContainer">
-      <ThemeProvider theme={theme}>
-        <Formik
-          initialValues={{ title: "", author: "", text: "" }}
-          onSubmit={(data) => {
-            console.log(data);
-            createPoem(data);
-          }}
-          validationSchema={validationSchema}
-        >
-          {({
-            values,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            errors,
-            touched,
-          }) => (
-            <Form onSubmit={handleSubmit} className="poem-form">
-              <TextField
-                className="input-holder"
-                placeholder="Title"
-                name="title"
-                type="input"
-                as={TextField}
-                variant="outlined"
-                label="Title"
-                required
-                size="small"
-                value={values.title}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.title && touched.title ? (
-                <p className="form-error">{errors.title}</p>
-              ) : (
-                <></>
-              )}
+      <form onSubmit={createPoem} encType="multipart/form-data">
+        <label>Author</label>
+        <input
+          type="text multi-line"
+          id="poemAuthor"
+          name="author"
+          value={poem.author}
+          className="text-input"
+          readOnly={true}
+        />
+        <label>Title</label>
+        <input
+          type="text"
+          id="poemTitle"
+          name="title"
+          value={poem.title}
+          onChange={poemUpdate}
+          className="text-input"
+        />
 
-              <TextField
-                className="input-holder"
-                placeholder="Author"
-                name="author"
-                type="input"
-                as={TextField}
-                variant="outlined"
-                label="Author"
-                size="small"
-                required
-                value={values.author}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.author && touched.author ? (
-                <p className="form-error">{errors.author}</p>
-              ) : (
-                <></>
-              )}
+        <label>Poem Text</label>
+        <textarea
+          type="text"
+          rows="5"
+          id="poemText"
+          name="text"
+          value={poem.text}
+          onChange={poemUpdate}
+          className="text-input"
+        />
 
-              <TextField
-                className="input-holder"
-                placeholder="Poem Text"
-                name="text"
-                type="input"
-                multiline
-                as={TextField}
-                variant="outlined"
-                label="Poem Text"
-                size="small"
-                rows="5"
-                required
-                value={values.text}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.text && touched.text ? (
-                <p className="form-error">{errors.text}</p>
-              ) : (
-                <></>
-              )}
-              <button className="form-btn" type="submit">
-                Submit
-              </button>
-            </Form>
-          )}
-        </Formik>
-      </ThemeProvider>
+        {update ? (
+          <></>
+        ) : (
+          <>
+            <label>Choose a Display Image</label>
+            <input
+              type="file"
+              filename="articleImage"
+              onChange={onChangeFile}
+              className="img-btn"
+            />
+          </>
+        )}
+
+        <button className="submit-button" type="submit">
+          {update ? "Update" : "Submit"}
+        </button>
+      </form>
     </div>
   );
 };

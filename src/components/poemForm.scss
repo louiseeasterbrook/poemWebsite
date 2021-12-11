@@ -3,17 +3,11 @@
 }
 
 .poemFormContainer > Form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   width: 100%;
   margin-top: 1rem;
 }
-
 .poemFormContainer > Form > label {
   margin-top: 0.7rem;
   margin-bottom: 0.2rem;
@@ -64,12 +58,11 @@
 
 .submit-button:hover {
   background-color: #3d90df;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
 ::-webkit-file-upload-button {
-  background: #e0e0e0;
+  background: rgb(224, 224, 224);
   padding: 0.3rem;
   border: 1px black solid;
   border-radius: 3px;
@@ -79,14 +72,11 @@
 }
 
 ::-webkit-file-upload-button:hover {
-  background: #eeeeee;
-  -webkit-transition: 0.3s;
+  background: rgb(238, 238, 238);
   transition: 0.3s;
 }
 
 .form-author-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-top: 0.5rem;
   margin-bottom: 0.2rem;
@@ -94,4 +84,3 @@
   gap: 0.5rem;
   font-size: 14px;
 }
-/*# sourceMappingURL=poemForm.css.map */
