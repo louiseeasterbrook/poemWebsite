@@ -1,0 +1,26 @@
+.load-object {
+  position: absolute;
+  border: rgb(221, 221, 221) 5px solid;
+  border-top: #5ea8eb 5px solid;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100px;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -20%);
+  animation: spin 0.7s infinite linear;
+}
+
+.load-container {
+  background-color: beige;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

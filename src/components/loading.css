@@ -1,26 +1,41 @@
 .load-object {
   position: absolute;
-  border: rgb(192, 192, 192) 5px solid;
-  border-top: #577590 5px solid;
+  border: #dddddd 5px solid;
+  border-top: #5ea8eb 5px solid;
   width: 2rem;
   height: 2rem;
   border-radius: 100px;
   left: 50%;
-  bottom: 20%;
-  transform: translate(-50%, -20%);
-  animation: spin 0.7s infinite linear;
+  top: 20%;
+  -webkit-transform: translate(-50%, -20%);
+          transform: translate(-50%, -20%);
+  -webkit-animation: spin 0.7s infinite linear;
+          animation: spin 0.7s infinite linear;
 }
 
 .load-container {
   background-color: beige;
 }
 
-@keyframes spin {
+@-webkit-keyframes spin {
   0% {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
-
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*# sourceMappingURL=loading.css.map */
