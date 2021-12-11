@@ -20,10 +20,30 @@ mongoose
 
 const poemSchema = new mongoose.Schema({
   id: String,
-  title: String,
-  author: String,
-  text: String,
-  votes: Number,
+  title: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: String,
+  },
+  votes: {
+    type: Number,
+  },
+  articleImage: {
+    type: String,
+  },
+  posted: {
+    type: Date,
+  },
 });
 
 poemSchema.set("toJSON", {
