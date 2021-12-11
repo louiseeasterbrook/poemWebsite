@@ -1,16 +1,8 @@
 .votesContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   background-color: #5ea8eb;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   padding: 0 7px;
   border-radius: 10px;
@@ -37,7 +29,6 @@
 }
 
 .votesContainer button:hover {
-  -webkit-transition: 0.3s;
   transition: 0.3s;
   background-color: #eeeeee;
 }
@@ -51,8 +42,7 @@
   padding: 0.4rem;
   background-color: rgba(41, 41, 41, 0.5);
   border: 1px black solid;
-  -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
-          box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   position: absolute;
   top: 30px;
@@ -65,4 +55,3 @@
 .up-icon {
   color: white;
 }
-/*# sourceMappingURL=votes.css.map */
