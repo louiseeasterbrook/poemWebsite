@@ -5,9 +5,7 @@
 }
 
 main {
-  min-height: 70vh;
-  background-color: rgb(255, 255, 255);
-  margin-top: 8vh;
+  padding-top: 4rem;
 }
 
 a {
