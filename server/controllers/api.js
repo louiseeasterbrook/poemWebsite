@@ -2,6 +2,20 @@ const poemsRouter = require("express").Router();
 const Poem = require("../models/poems");
 const logger = require("../utils/logger");
 
+//image
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "./public/uploads");
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 //GET ALL
 poemsRouter.get("/", (request, response) => {
   Poem.find({}).then((poems) => {
@@ -42,59 +56,107 @@ const getTokenFrom = (request) => {
 };
 
 //ADD A POEM
-poemsRouter.post("/", (request, response) => {
-  const body = request.body;
+poemsRouter.post(
+  "/",
+  upload.single("articleImage"),
+  (request, response, next) => {
+    const body = request.body;
 
-  if (!body.title || !body.author || !body.text) {
-    return response.status(400).json({
-      error: "content missing",
+    // send error  if authorisation token does not match
+    if (!getTokenFrom(request)) {
+      return response.status(401).json({
+        error: "not authorised to make a post",
+      });
+    }
+
+    const poem = new Poem({
+      title: body.title,
+      author: body.author,
+      text: body.text,
+      votes: Number(0),
+      articleImage: request.file.originalname,
+      posted: body.posted,
+      userId: body.userId,
     });
+
+    poem
+      .save()
+      .then((savedPoem) => {
+        response.json(savedPoem);
+      })
+      .catch((error) => next(error));
   }
-
-  //send error  if authroisation token does not match
-  if (!getTokenFrom(request)) {
-    return response.status(401).json({
-      error: "not authorised to make a post",
-    });
-  }
-
-  const poem = new Poem({
-    title: body.title,
-    author: body.author,
-    text: body.text,
-    votes: Number(0),
-  });
-
-  poem
-    .save()
-    .then((savedPoem) => {
-      response.json(savedPoem);
-    })
-    .catch((error) => next(error));
-});
+);
 
 //update votes
-poemsRouter.post("/:id", (request, response) => {
-  const body = request.body;
+poemsRouter.post(
+  "/:id/votes",
 
-  if (!body.title || !body.author || !body.text) {
-    return response.status(400).json({
-      error: "content missing",
-    });
+  (request, response, next) => {
+    const body = request.body;
+
+    const update = {
+      title: body.title,
+      author: body.author,
+      text: body.text,
+      votes: body.votes,
+      posted: body.posted,
+    };
+
+    Poem.findByIdAndUpdate(request.params.id, update)
+      .then(() => {
+        response.status(204).end();
+      })
+      .catch((error) => next(error));
   }
+);
 
-  const update = {
-    votes: request.body.votes,
-    title: request.body.title,
-    text: request.body.text,
-    author: request.body.author,
-  };
+//update poem
+poemsRouter.post(
+  "/:id",
+  upload.single("articleImage"),
+  (request, response, next) => {
+    const body = request.body;
 
-  Poem.findByIdAndUpdate(request.params.id, update)
-    .then(() => {
-      response.status(204).end();
-    })
-    .catch((error) => response.status(400).json({ error: { error } }));
+    // send error  if authorisation token does not match
+    if (!getTokenFrom(request)) {
+      return response.status(401).json({
+        error: "not authorised to make a post",
+      });
+    }
+
+    const update = {
+      id: body.id,
+      title: body.title,
+      author: body.author,
+      text: body.text,
+      votes: body.votes,
+      posted: body.posted,
+      articleImage: body.articleImage,
+    };
+
+    Poem.findByIdAndUpdate(request.params.id, update)
+      .then(() => {
+        response.json(update).status(204).end();
+      })
+      .catch((error) => next(error));
+  }
+);
+
+// FIND USER PROFILE POEMS
+poemsRouter.get("/profile/:id", async (request, response) => {
+  // find all poems with id as 'userId'
+  const poems = await Poem.find({
+    userId: request.params.id,
+  });
+
+  // if (poems.length === 0) {
+  //   return response.status(404).json({
+  //     error: "Not found",
+  //   });
+  // } else {
+  return response.status(200).json(poems);
+  // }
 });
 
 module.exports = poemsRouter;
