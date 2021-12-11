@@ -150,11 +150,6 @@ poemsRouter.get("/profile/:id", async (request, response) => {
     userId: request.params.id,
   });
 
-  // if (poems.length === 0) {
-  //   return response.status(404).json({
-  //     error: "Not found",
-  //   });
-  // } else {
   return response.status(200).json(poems);
   // }
 });
