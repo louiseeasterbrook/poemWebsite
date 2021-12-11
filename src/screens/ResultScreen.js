@@ -18,11 +18,11 @@ const ResultScreen = ({
   const [previewSearchVal, setPreviewSearchVal] = useState("");
   const [finalResults, setFinalResults] = useState([]);
 
-  useEffect(() => {
-    if (searchPress) {
-      filterData();
-    }
-  }, [searchPress]);
+  // useEffect(() => {
+  //   if (searchPress) {
+  //     filterData();
+  //   }
+  // }, [searchPress]);
 
   const filterData = () => {
     setSearchResults([]);
