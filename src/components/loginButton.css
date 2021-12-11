@@ -1,0 +1,24 @@
+.login-btn {
+  border: none;
+  outline: none;
+  padding: 8px 28px;
+  border-radius: 20px;
+  color: white;
+  background-color: #5ea8eb;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 1rem;
+}
+
+.logout-btn {
+  border: none;
+  outline: none;
+  padding: 8px 28px;
+  border-radius: 20px;
+  color: white;
+  background-color: #5ea8eb;
+  cursor: pointer;
+  font-size: 15px;
+  color: white;
+}
+/*# sourceMappingURL=loginButton.css.map */
